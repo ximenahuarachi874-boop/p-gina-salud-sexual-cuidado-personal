@@ -1,0 +1,2963 @@
+ <!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Salud Adolescente</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+/* ===== ESTILO GENERAL ===== */
+body{
+    margin:0;
+    font-family: segoe UI, sans-serif;
+    height: 100vh;
+    background-image: url("imag/imagen6.jpg");
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat; 
+}
+/* OSCURECER O SUAVIZAR EL FONDO */
+body::before{
+    content:"";
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(255,255,255,0.15);
+    z-index:-1;
+}
+/* ===== MENÚ SUPERIOR ===== */
+.menu{
+    position:fixed;
+    top:20px;
+    width:100%;
+    text-align:center;
+}
+.menu button{
+    background:#e6d6ff;
+    border:none;
+    padding:10px 20px;
+    margin:5px;
+    border-radius:20px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.menu button:hover{
+    background:#d6c2ff;
+}
+
+/* ===== PANTALLAS ===== */
+.pantalla{
+    display:none;
+    height:100vh;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+
+.activa{
+    display:flex;
+}
+
+/* ===== CAJAS ===== */
+.caja{
+    background: rgba(255,255,255,0.20);
+    backdrop-filter: blur(20px);
+    padding:40px;
+    border-radius:20px;
+    width:80%;
+    max-width:900px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* ===== SUBCAJAS ===== */
+.subcaja{
+    background: rgba(255,255,255,0.9);
+    padding:15px;
+    border-radius:15px;
+    margin:10px 0;
+    box-shadow:0 5px 15px rgba(0,0,0,0.08);
+    text-align:left;
+}
+/* DESPLAZAMIENTO DE ALIMENTACIÓN */
+#alimentacionM {
+    align-items: flex-start;
+    overflow-y: auto;
+}
+
+#alimentacionM .caja {
+    max-height: 80vh;
+    overflow-y: auto;
+}
+/* DESPLAZAMIENTO DE LAS PANTALLAS DE SALUD FÍSICA */
+
+#alimentacionM,
+#ejercicioM,
+#descansoM {
+    align-items: flex-start;
+    overflow-y: auto;
+}
+
+#alimentacionM .caja,
+#ejercicioM .caja,
+#descansoM .caja {
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+/* DESPLAZAMIENTO DE SALUD FÍSICA */
+
+#alimentacionM,
+#ejercicioM,
+#descansoM {
+    align-items: flex-start;
+    overflow-y: auto;
+}
+
+#alimentacionM .caja,
+#ejercicioM .caja,
+#descansoM .caja {
+    max-height: 80vh;
+    overflow-y: auto;
+}
+/* DESPLAZAMIENTO DE SALUD MENTAL MASCULINA */
+
+#emocionM,
+#presionM,
+#autoestimaM,
+#relacionesM {
+    align-items: flex-start;
+    overflow-y: auto;
+}
+
+#emocionM .caja,
+#presionM .caja,
+#autoestimaM .caja,
+#relacionesM .caja {
+    max-height: 80vh;
+    overflow-y: auto;
+}
+/* DESPLAZAMIENTO DE CUIDADO PERSONAL MASCULINO */
+
+[id="Higiene personalM"],
+[id="Higiene y cuidado de la pielM"],
+[id="Cuidado del cabelloM"],
+[id="Presentación personalM"] {
+    align-items: flex-start;
+    overflow-y: auto;
+}
+
+[id="Higiene personalM"] .caja,
+[id="Higiene y cuidado de la pielM"] .caja,
+[id="Cuidado del cabelloM"] .caja,
+[id="Presentación personalM"] .caja {
+    max-height: 80vh;
+    overflow-y: auto;
+}
+/* DESPLAZAMIENTO DE SALUD MENTAL FEMENINA */
+
+#emocionF,
+#autoestimaF,
+#redesF,
+#apoyoF {
+    align-items: flex-start;
+    overflow-y: auto;
+}
+
+#emocionF .caja,
+#autoestimaF .caja,
+#redesF .caja,
+#apoyoF .caja {
+    max-height: 80vh;
+    overflow-y: auto;
+}
+/* DESPLAZAMIENTO DE CUIDADO PERSONAL FEMENINO */
+
+#pielF,
+#higieneF,
+#menstrualF,
+#autoF {
+    align-items: flex-start;
+    overflow-y: auto;
+}
+
+#pielF .caja,
+#higieneF .caja,
+#menstrualF .caja,
+#autoF .caja {
+    max-height: 80vh;
+    overflow-y: auto;
+}
+/* DESPLAZAMIENTO DE SALUD FÍSICA FEMENINA */
+
+#ejercicioF,
+#alimentacionF,
+#descansoF {
+    align-items: flex-start;
+    overflow-y: auto;
+}
+
+#ejercicioF .caja,
+#alimentacionF .caja,
+#descansoF .caja {
+    max-height: 80vh;
+    overflow-y: auto;
+}
+/* DESPLAZAMIENTO DE SALUD EMOCIONAL */
+
+#controlG,
+#comunicacionG,
+#relacionesG {
+    align-items: flex-start;
+    overflow-y: auto;
+}
+
+#controlG .caja,
+#comunicacionG .caja,
+#relacionesG .caja {
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+
+/* DESPLAZAMIENTO DE HÁBITOS SALUDABLES */
+
+#alimentacionG,
+#suenoG,
+#rutinaG {
+    align-items: flex-start;
+    overflow-y: auto;
+}
+
+#alimentacionG .caja,
+#suenoG .caja,
+#rutinaG .caja {
+    max-height: 80vh;
+    overflow-y: auto;
+}
+/* DESPLAZAMIENTO DE LA INTRODUCCIÓN DE LAS ITS */
+
+#itsG {
+    align-items: flex-start;
+    overflow-y: auto;
+}
+
+#itsG .caja {
+    max-height: 80vh;
+    overflow-y: auto;
+}
+/* DESPLAZAMIENTO DE LAS ITS */
+
+#vph,
+#clamidiaGonorrea,
+#sifilis,
+#herpes,
+#vih {
+    align-items: flex-start;
+    overflow-y: auto;
+}
+
+#vph .caja,
+#clamidiaGonorrea .caja,
+#sifilis .caja,
+#herpes .caja,
+#vih .caja {
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+/* ===== BOTONES ===== */
+button{
+    padding:12px 25px;
+    border:none;
+    border-radius:20px;
+    margin:8px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.azul{ background:#cde7ff; }
+.rosa{ background:#ffd6ec; }
+.lila{ background:#e6d6ff; }
+
+/* ===== COLUMNAS ===== */
+.columna{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+    margin-top:20px;
+}
+
+.columna button{
+    width:100%;
+}
+
+/* ===== TEXTO ===== */
+h1{
+    color:#493765;
+}
+.galeria{
+    display:flex;
+    justify-content: center;
+    gap:10px;
+    margin-bottom:20px;
+}
+
+.galeria img{
+    width:100%;
+    max-width:300px;
+    height:200px;
+    object-fit:contain;
+    border-radius:15px;
+}
+p{
+    color:#292333;
+    line-height:1.8;
+    font-size:16px;
+}
+
+
+</style>
+
+<script>
+function mostrar(id){
+    let pantallas = document.querySelectorAll('.pantalla');
+    pantallas.forEach(p => p.classList.remove('activa'));
+    document.getElementById(id).classList.add('activa');
+}
+</script>
+<script>
+
+function responder(){
+
+let pregunta =
+document.getElementById("pregunta").value.toLowerCase();
+
+let respuesta =
+"Lo siento, amiguito 💜. Todavía no conozco la respuesta a esa pregunta. Puedes preguntarme sobre autoestima, estrés, ansiedad, alimentación, sueño, autocuidado o presión social";
+if(pregunta.includes("qué es la autoestima") || pregunta.includes("que es la autoestima")){
+    respuesta="La autoestima es la forma en que te ves y te valoras. Recuerda que tu valor no depende de las opiniones de los demás, sino de quién eres realmente.";
+}
+
+else if(pregunta.includes("tengo baja autoestima")){
+    respuesta="Si sientes que tienes baja autoestima, intenta recordar tus cualidades y logros. Todos tenemos cosas valiosas que aportar, incluso cuando no las vemos.";
+}
+
+else if(pregunta.includes("estoy triste")){
+    respuesta="Lamento que te sientas así. Hablar con alguien de confianza, escuchar música o hacer algo que disfrutes puede ayudarte a sentirte mejor.";
+}
+
+else if(pregunta.includes("Me siento estresado") || pregunta.includes("estrés")){
+    respuesta="Respira profundo. No tienes que resolver todo de una vez. Ve paso a paso y recuerda que descansar también es importante.";
+}
+
+else if(pregunta.includes("qué hago si estoy nervioso")){
+    respuesta="Es normal sentirse nervioso. Intenta respirar lentamente y recordar que no necesitas ser perfecto para hacerlo bien.";
+}
+
+else if(pregunta.includes("qué es la presión social")){
+    respuesta="La presión social ocurre cuando otras personas intentan influir en tus decisiones. Recuerda que decir 'no' también es una muestra de valentía.";
+}
+
+else if(pregunta.includes("¿cómo dormir mejor?")){
+    respuesta="Procura dejar el celular unos minutos antes de dormir, mantener horarios regulares y crear un ambiente tranquilo para descansar.";
+}
+
+else if(pregunta.includes("¿por qué dormir es importante?")){
+    respuesta="Dormir bien ayuda a tu cuerpo a recuperarse, mejora tu concentración y te da energía para afrontar el día.";
+}
+
+else if(pregunta.includes("¿cómo cuidar mi piel?")){
+    respuesta="Lava tu rostro con suavidad, usa protector solar y toma suficiente agua. Tu piel agradecerá esos pequeños cuidados diarios.";
+}
+
+else if(pregunta.includes("¿cómo mejorar mi alimentación?")){
+    respuesta="No se trata de comer perfecto, sino de buscar equilibrio. Intenta incluir frutas, verduras y suficiente agua en tu día.";
+}
+
+else if(pregunta.includes("¿qué es el autocuidado?")){
+    respuesta="El autocuidado es dedicar tiempo a tu bienestar físico y emocional. Cuidarte no es egoísmo, es una forma de quererte.";
+}
+
+else if(pregunta.includes("Tengo ansiedad")){
+    respuesta="La ansiedad puede hacer que te preocupes demasiado por situaciones futuras. Respira profundo y recuerda que puedes pedir ayuda cuando lo necesites.";
+}
+
+else if(pregunta.includes("¿me siento solo?")){
+    respuesta="Sentirse solo puede ser difícil. Intenta acercarte a alguien de confianza. A veces una conversación sincera puede hacer una gran diferencia.";
+}
+
+else if(pregunta.includes("¿cómo ser más feliz?")){
+    respuesta="La felicidad no significa estar bien todo el tiempo. También se construye disfrutando pequeños momentos y valorando lo bueno que tienes.";
+}
+
+else if(pregunta.includes("¿cómo tener amigos?")){
+    respuesta="Sé tú mismo, escucha a los demás y muestra interés genuino. Las amistades verdaderas se construyen poco a poco.";
+}
+else if(pregunta.includes("¿qué es el acné?") || pregunta.includes("que es el acne")){
+    respuesta="El acné es una condición común durante la adolescencia. Aparece cuando los poros se obstruyen con grasa y células muertas. No te preocupes, es algo muy normal.";
+}
+
+else if(pregunta.includes("¿por qué tengo granos?") || pregunta.includes("porque tengo granos")){
+    respuesta="Los granos suelen aparecer por cambios hormonales, especialmente durante la adolescencia. Mantener una buena higiene facial puede ayudar a controlarlos.";
+}
+
+else if(pregunta.includes("¿cómo quitar los granos?") || pregunta.includes("como quitar los granos")){
+    respuesta="No los exprimas, amiguito 💜. Lava tu rostro con suavidad y mantén una rutina de cuidado constante. La paciencia es importante.";
+}
+
+else if(pregunta.includes("¿cada cuánto debo lavar mi cara?")){
+    respuesta="Lo recomendable es lavar tu rostro dos veces al día: por la mañana y antes de dormir.";
+}
+
+else if(pregunta.includes("¿por qué usar protector solar?")){
+    respuesta="El protector solar ayuda a proteger tu piel de los rayos del sol, previene manchas y cuida tu piel a largo plazo.";
+}
+
+else if(pregunta.includes("¿qué es el protector solar?")){
+    respuesta="Es un producto que protege tu piel de los rayos ultravioleta del sol y ayuda a prevenir daños y quemaduras.";
+}
+
+else if(pregunta.includes("mi piel es grasa")){
+    respuesta="Si tu piel es grasa, intenta usar productos suaves y específicos para tu tipo de piel. Tener piel grasa es normal y se puede cuidar fácilmente.";
+}
+
+else if(pregunta.includes("mi piel es seca")){
+    respuesta="La piel seca necesita hidratación. Beber agua y usar una crema hidratante adecuada puede ayudar mucho.";
+}
+
+else if(pregunta.includes("¿por qué debo tomar agua?")){
+    respuesta="Tomar agua ayuda a mantener tu cuerpo y tu piel hidratados. Además, contribuye a que te sientas con más energía.";
+}
+
+else if(pregunta.includes("¿cómo tener una piel sana?")){
+    respuesta="Una piel sana se logra con limpieza, hidratación, protector solar, buena alimentación y suficiente descanso.";
+}
+
+else if(pregunta.includes("¿el maquillaje daña la piel?")){
+    respuesta="No necesariamente. Lo importante es retirar el maquillaje antes de dormir y mantener una buena limpieza facial.";
+}
+
+else if(pregunta.includes("¿por qué salen puntos negros?")){
+    respuesta="Los puntos negros aparecen cuando los poros se llenan de grasa y quedan expuestos al aire. Son muy comunes en la adolescencia.";
+}
+
+else if(pregunta.includes("¿qué alimentos ayudan a la piel?")){
+    respuesta="Las frutas, verduras y el agua ayudan a mantener una piel saludable. Una alimentación equilibrada beneficia a todo tu cuerpo.";
+}
+
+else if(pregunta.includes("¿por qué debo cuidar mi piel?")){
+    respuesta="Porque tu piel te protege todos los días. Cuidarla es una forma de cuidar tu salud y sentirte mejor contigo mismo.";
+}
+else if (pregunta.includes("¿qué son las ITS?")) {
+    respuesta = " Las infecciones de transmisión sexual son infecciones que pueden transmitirse principalmente mediante el contacto sexual. Algunas no presentan síntomas, por lo que una persona puede tener una infección sin saberlo. Informarse, prevenir y acudir a un centro de salud cuando sea necesario ayuda a proteger la salud.";
+}
+
+else if (pregunta.includes("¿cómo se transmiten las ITS?")) {
+    respuesta = " Pueden transmitirse mediante diferentes tipos de contacto sexual, según la infección. Algunas también pueden transmitirse por contacto con sangre infectada o de madre a bebé durante el embarazo o el parto. Conocer sus vías de transmisión permite prevenirlas y evitar información equivocada.";
+}
+
+else if (pregunta.includes("¿cómo se pueden prevenir las ITS?")) {
+    respuesta = " El uso correcto del preservativo, las vacunas recomendadas, las pruebas médicas y la información confiable ayudan a reducir el riesgo. También es importante tomar decisiones informadas y acudir a un profesional de salud para resolver dudas.";
+}
+
+else if (pregunta.includes("¿qué es el VIH?")) {
+    respuesta = " Es un virus que afecta al sistema inmunitario, encargado de defender al organismo de las infecciones. Actualmente existen tratamientos que permiten controlar el virus y llevar una vida saludable. Una prueba específica permite conocer si una persona tiene VIH.";
+}
+
+else if (pregunta.includes("¿cuál es la diferencia entre VIH y sida?")) {
+    respuesta = " El VIH es el virus que afecta al sistema inmunitario, mientras que el sida es la etapa más avanzada de la infección. No todas las personas con VIH desarrollan sida. El diagnóstico temprano y el tratamiento adecuado ayudan a evitar que la infección avance.";
+}
+
+else if (pregunta.includes("¿qué es el vph?")) {
+    respuesta = " El virus del papiloma humano es un grupo de virus muy común. Algunos tipos pueden causar verrugas y otros están relacionados con determinados tipos de cáncer. La vacunación ayuda a prevenir enfermedades asociadas con el VPH.";
+}
+
+else if (pregunta.includes("¿qué es la sífilis?")) {
+    respuesta = " Es una infección causada por una bacteria que puede afectar distintas partes del organismo. Sus síntomas pueden desaparecer temporalmente aunque la infección continúe. Puede curarse con el tratamiento adecuado indicado por un profesional de salud.";
+}
+
+else if (pregunta.includes("¿qué es la clamidia?")) {
+    respuesta = " Es una infección bacteriana que puede no presentar síntomas. Si no se trata, puede causar complicaciones en la salud reproductiva. Puede curarse con antibióticos recetados por un profesional de salud.";
+}
+
+else if (pregunta.includes("¿qué es la gonorrea?")) {
+    respuesta = " Es una infección bacteriana que puede afectar los genitales, el recto o la garganta. Algunas personas no presentan síntomas. Necesita diagnóstico y tratamiento médico para evitar complicaciones.";
+}
+
+else if (pregunta.includes("¿qué es el herpes genital?")) {
+    respuesta = " Es una infección causada por el virus del herpes simple. Puede producir lesiones o no presentar síntomas visibles. Aunque no existe una cura que elimine el virus, hay medicamentos que ayudan a controlar los síntomas y reducir los brotes.";
+}
+
+else if (pregunta.includes("¿todas las its tienen cura?")) {
+    respuesta = " No todas. Algunas infecciones bacterianas, como la clamidia y la sífilis, pueden curarse con el tratamiento adecuado. Otras, como el VIH y el herpes genital, pueden controlarse mediante medicamentos.";
+}
+
+else if (pregunta.includes("¿todas las its presentan síntomas?")) {
+    respuesta = " No. Algunas infecciones pueden estar presentes sin provocar molestias. Por eso, cuando existe posibilidad de exposición, es importante consultar a un profesional y realizarse las pruebas recomendadas.";
+}
+
+else if (pregunta.includes("¿qué debo hacer si creo que tengo una its?")) {
+    respuesta = " Lo recomendable es acudir a un centro de salud para recibir orientación y realizar las pruebas necesarias. Evita automedicarte o utilizar remedios caseros. El personal sanitario podrá explicarte qué tratamiento necesitas y cómo cuidar tu salud.";
+}
+
+else if (pregunta.includes("¿para qué sirve el preservativo?")) {
+    respuesta = " Es un método de barrera que ayuda a reducir el riesgo de muchas ITS y de embarazo cuando se utiliza correctamente. No elimina por completo todos los riesgos, por lo que también es importante conocer otras medidas de prevención.";
+}
+
+let chat =
+document.getElementById("chatMensajes");
+
+chat.innerHTML +=
+"<div class='user'>" + pregunta + "</div>";
+
+chat.innerHTML +=
+"<div class='bot'>" + respuesta + "</div>";
+
+document.getElementById("pregunta").value="";
+
+chat.scrollTop = chat.scrollHeight;
+
+}
+
+</script>
+
+</head>
+
+<body>
+
+<!-- MENÚ -->
+<div class="menu">
+    <button onclick="mostrar('inicio')">Inicio</button>
+    <button onclick="mostrar('masculino')">Masculino</button>
+    <button onclick="mostrar('femenino')">Femenino</button>
+    <button onclick="mostrar('general')">General</button>
+</div>
+
+<!-- INICIO -->
+<div id="inicio" class="pantalla activa">
+<div class="caja">
+<h1>Cuidar tu cuerpo y tu mente es la mejor forma de ser dueño de tus decisiones</h1>
+<p>Esta página brinda información clara sobre salud física, emocional y hábitos en la adolescencia.</p>
+
+<button class="azul" onclick="mostrar('masculino')">Área Masculina</button>
+<button class="rosa" onclick="mostrar('femenino')">Área Femenina</button>
+<button class="lila" onclick="mostrar('general')">Zona General</button>
+</div>
+</div>
+
+<!-- MASCULINO -->
+<div id="masculino" class="pantalla">
+<div class="caja">
+<h1>ÁREA MASCULINA</h1>
+
+<div class="columna">
+<button onclick="mostrar('mentalM')">Salud Mental</button>
+<button onclick="mostrar('cuidadoM')">Cuidado Personal</button>
+<button onclick="mostrar('fisicaM')">Salud Física</button>
+</div>
+
+<button onclick="mostrar('inicio')">Volver</button>
+</div>
+</div>
+
+<!-- SALUD MENTAL MENU -->
+<div id="mentalM" class="pantalla">
+<div class="caja">
+<h1>SALUD MENTAL</h1>
+<div class="galeria">
+    <img src="imag/imagen15.jpg">
+    <img src="imag/imagen16.jpg">
+    <img src="imag/imagen17.jpg">
+</div>
+
+<div class="columna">
+<button onclick="mostrar('emocionM')">Gestión emocional</button>
+<button onclick="mostrar('presionM')">Presión social</button>
+<button onclick="mostrar('autoestimaM')">Autoestima</button>
+<button onclick="mostrar('relacionesM')">Relaciones</button>
+</div>
+
+<button onclick="mostrar('masculino')">Volver</button>
+</div>
+</div>
+
+<!-- CONTENIDOS -->
+<div id="emocionM" class="pantalla">
+<div class="caja">
+<h1>GESTION EMOCIONAL"El arte de entenderte"</h1>
+<div class="subcaja">
+    
+<!-- IMAGEN ANTES DEL CONCEPTO -->
+        <div class="galeria">
+            <img src="imag/imagen28.jpg"
+                 alt="Ilustración sobre gestión emocional">
+        </div>
+
+<p>
+        La gestión emocional es la capacidad de reconocer,
+        comprender y manejar nuestras emociones de manera adecuada.
+        Durante la adolescencia experimentamos sentimientos como
+        alegría, tristeza, enojo, miedo, frustración y preocupación.
+    </p>
+
+    <h3>¿Cómo podemos gestionar nuestras emociones?</h3>
+
+    <ul>
+        <li>Reconocer y aceptar lo que sentimos.</li>
+        <li>Expresar nuestros sentimientos con respeto y confianza.</li>
+        <li>Mantener la calma antes de reaccionar.</li>
+        <li>Practicar la respiración profunda y la relajación.</li>
+        <li>Buscar apoyo en personas de confianza.</li>
+        <li>Resolver los problemas mediante el diálogo.</li>
+    </ul>
+
+    <h3>¿Por qué es importante?</h3>
+
+    <p>
+        Nos ayuda a cuidar nuestra salud mental, mejorar nuestras
+        relaciones personales, afrontar situaciones difíciles y
+        tomar decisiones responsables.
+    </p>
+
+    <p><strong>Recuerda:</strong> Todas las emociones son válidas.
+    Lo importante es aprender a expresarlas y manejarlas de forma saludable.</p>
+</div>
+<button onclick="mostrar('mentalM')">Volver</button>
+</div>
+</div>
+
+<div id="presionM" class="pantalla">
+<div class="caja">
+<h1>PRESIÓN SOCIAL</h1>
+<div class="subcaja">
+<!-- IMAGEN ANTES DEL CONCEPTO -->
+        <div class="galeria">
+            <img src="imag/imagen29.jpg"
+                 alt="Ilustración sobre gestión emocional">
+        </div>
+
+<p>
+        La presión social ocurre cuando una persona siente que debe
+        actuar, pensar o comportarse de determinada manera para ser
+        aceptada por sus amigos o por un grupo. Durante la adolescencia
+        puede influir en nuestra forma de vestir, hablar y tomar decisiones.
+    </p>
+
+    <h3>¿Cómo podemos enfrentarla?</h3>
+    <ul>
+        <li>Aprender a decir no cuando algo no nos parece correcto.</li>
+        <li>Tomar decisiones según nuestros valores y convicciones.</li>
+        <li>No hacer algo solamente para agradar a los demás.</li>
+        <li>Elegir amistades que respeten nuestras decisiones.</li>
+        <li>Reconocer cuándo una influencia puede ser perjudicial.</li>
+        <li>Buscar orientación cuando tengamos dudas o dificultades.</li>
+    </ul>
+
+    <h3>¿Por qué es importante?</h3>
+    <p>
+        Nos permite desarrollar nuestra autonomía, fortalecer nuestra
+        personalidad y tomar decisiones responsables sin dejarnos
+        llevar por influencias negativas.
+    </p>
+
+    <p><strong>Recuerda:</strong> No necesitas hacer lo que otros hacen
+    para ser aceptado. Tus decisiones merecen respeto.</p>
+</div>
+<button onclick="mostrar('mentalM')">Volver</button>
+</div>
+</div>
+
+<div id="autoestimaM" class="pantalla">
+<div class="caja">
+<h1>AUTOESTIMA "Valorando quíen eres"</h1>
+<div class="subcaja">
+<!-- IMAGEN ANTES DEL CONCEPTO -->
+        <div class="galeria">
+            <img src="imag/imagen30.jpg"
+                 alt="Ilustración sobre gestión emocional">
+        </div>
+
+<p>
+        La autoestima es la valoración, el respeto y la aceptación que
+        tenemos hacia nosotros mismos. Durante la adolescencia puede
+        verse influida por los comentarios de otras personas, las
+        comparaciones, las redes sociales y los cambios físicos y emocionales.
+    </p>
+
+    <h3>¿Cómo podemos fortalecer nuestra autoestima?</h3>
+    <ul>
+        <li>Reconocer nuestras cualidades y capacidades.</li>
+        <li>Valorar nuestros logros, aunque sean pequeños.</li>
+        <li>Evitar compararnos constantemente con otras personas.</li>
+        <li>Aceptar nuestros errores como oportunidades para aprender.</li>
+        <li>Establecer metas personales y trabajar para alcanzarlas.</li>
+        <li>Rodearnos de personas que nos apoyen y respeten.</li>
+    </ul>
+
+    <h3>¿Por qué es importante?</h3>
+    <p>
+        Una autoestima saludable favorece la confianza, la seguridad
+        personal, la autonomía y una relación positiva con nosotros mismos.
+    </p>
+
+    <p><strong>Recuerda:</strong> Tu valor no depende de las opiniones
+    de los demás. Aprende a reconocer y valorar quién eres.</p>
+</div>
+<button onclick="mostrar('mentalM')">Volver</button>
+</div>
+</div>
+
+<div id="relacionesM" class="pantalla">
+<div class="caja">
+<h1>RELACIONES SALUDABLES "Vinculos que suman"</h1>
+<div class="subcaja">
+<!-- IMAGEN ANTES DEL CONCEPTO -->
+        <div class="galeria">
+            <img src="imag/imagen31.jpg"
+                 alt="Ilustración sobre gestión emocional">
+        </div>
+
+<p>
+        Las relaciones saludables se construyen mediante el respeto,
+        la confianza, la comunicación y la comprensión. Pueden darse
+        entre amigos, familiares, compañeros y parejas.
+    </p>
+
+    <h3>¿Cómo construir relaciones saludables?</h3>
+    <ul>
+        <li>Respetar las opiniones y decisiones de los demás.</li>
+        <li>Escuchar y comunicarnos de manera sincera.</li>
+        <li>Establecer límites personales y respetarlos.</li>
+        <li>Resolver los desacuerdos mediante el diálogo.</li>
+        <li>Brindar apoyo sin controlar a otras personas.</li>
+        <li>Evitar amenazas, humillaciones, presiones y malos tratos.</li>
+    </ul>
+
+    <h3>¿Por qué son importantes?</h3>
+    <p>
+        Nos ayudan a mantener nuestro bienestar emocional, sentirnos
+        respetados, desarrollar confianza y construir vínculos positivos
+        con las personas que nos rodean.
+    </p>
+
+    <p><strong>Recuerda:</strong> Una relación saludable nunca debe
+    basarse en el miedo, el control o la falta de respeto.</p>
+</div>
+<button onclick="mostrar('mentalM')">Volver</button>
+</div>
+</div>
+
+<!-- CUIDADO PERSONAL -->
+<div id="cuidadoM" class="pantalla">
+<div class="caja">
+<h1>Cuidado Personal</h1>
+<div class="galeria">
+    <img src="imag/imagen18.jpg">
+    <img src="imag/imagen19.jpg">
+    <img src="imag/imagen20.jpg">
+</div>
+
+<div class="columna">
+<button onclick="mostrar('Higiene personalM')">Higiene personal</button>
+<button onclick="mostrar('Higiene y cuidado de la pielM')">Higiene y cuidado de la piel</button>
+<button onclick="mostrar('Cuidado del cabelloM')">Cuidado del cabello</button>
+<button onclick="mostrar('Presentación personalM')">Presentación personal</button>
+</div>
+
+<button onclick="mostrar('masculino')">Volver</button>
+</div>
+</div>
+
+<div id="Higiene personalM" class="pantalla">
+<div class="caja">
+<h1>HIGIENE PERSONAL</h1>
+<div class="subcaja">
+<!-- IMAGEN ANTES DEL CONCEPTO -->
+        <div class="galeria">
+            <img src="imag/imagen32.jpg"
+                 alt="Ilustración sobre gestión emocional">
+        </div>
+<p>
+        La higiene personal comprende los hábitos diarios que permiten
+        mantener nuestro cuerpo limpio y saludable. Durante la adolescencia,
+        los cambios hormonales pueden aumentar la sudoración y la producción
+        de grasa en la piel, por eso es importante mantener una buena higiene.
+    </p>
+
+    <h3>¿Cómo mantener una buena higiene personal?</h3>
+    <ul>
+        <li>Bañarse regularmente y limpiar adecuadamente todo el cuerpo.</li>
+        <li>Lavarse las manos con agua y jabón antes de comer y después de ir al baño.</li>
+        <li>Cepillarse los dientes al menos dos veces al día.</li>
+        <li>Mantener las uñas limpias y cortas.</li>
+        <li>Utilizar ropa interior y prendas limpias todos los días.</li>
+        <li>Cambiarse de ropa después de realizar actividades físicas.</li>
+        <li>Secar bien los pies, especialmente entre los dedos.</li>
+    </ul>
+
+    <h3>¿Por qué es importante?</h3>
+    <p>
+        Mantener una buena higiene ayuda a prevenir infecciones, malos olores,
+        acumulación de suciedad e irritaciones, además de favorecer el bienestar
+        y la salud personal.
+    </p>
+
+    <p><strong>Recuerda:</strong> La higiene personal es un hábito diario
+    que demuestra respeto y cuidado hacia nuestro propio cuerpo.</p>
+</div>
+<button onclick="mostrar('cuidadoM')">Volver</button>
+</div>
+</div>
+
+<div id="Higiene y cuidado de la pielM" class="pantalla">
+<div class="caja">
+<h1>HIGIENE FACIAL "Skincare Masculino"</h1>
+<div class="subcaja">
+<!-- IMAGEN ANTES DEL CONCEPTO -->
+        <div class="galeria">
+            <img src="imag/imagen33.jpg"
+                 alt="Ilustración sobre gestión emocional">
+        </div>
+ <p>
+        La piel es el órgano que protege nuestro cuerpo frente a factores
+        externos. Durante la adolescencia, los cambios hormonales pueden
+        aumentar la producción de grasa, provocando acné, puntos negros
+        y otras alteraciones.
+    </p>
+
+    <h3>¿Cómo cuidar nuestra piel?</h3>
+    <ul>
+        <li>Lavar el rostro por la mañana y por la noche con un limpiador suave.</li>
+        <li>Utilizar productos adecuados para nuestro tipo de piel.</li>
+        <li>Evitar apretar o reventar los granitos.</li>
+        <li>Aplicar protector solar durante el día.</li>
+        <li>Mantener limpias las toallas y fundas de almohada.</li>
+        <li>No compartir productos de higiene personal.</li>
+        <li>Consultar a un profesional si existe acné intenso o irritación persistente.</li>
+    </ul>
+
+    <h3>¿Por qué es importante?</h3>
+    <p>
+        El cuidado de la piel ayuda a conservar su función protectora,
+        prevenir irritaciones y mantener una limpieza adecuada.
+    </p>
+
+    <p><strong>Recuerda:</strong> Cada persona tiene un tipo de piel diferente,
+    por eso debemos utilizar productos adecuados y evitar tratamientos sin orientación.</p>
+</div>
+
+<button onclick="mostrar('cuidadoM')">Volver</button>
+</div>
+</div>
+
+<div id="Cuidado del cabelloM" class="pantalla">
+<div class="caja">
+<h1>Cuidado del cabello</h1>
+<div class="subcaja">
+<!-- IMAGEN ANTES DEL CONCEPTO -->
+        <div class="galeria">
+            <img src="imag/imagen34.jpg"
+                 alt="Ilustración sobre gestión emocional">
+        </div>
+ <p>
+        El cabello también necesita atención e higiene. Durante la adolescencia,
+        los cambios hormonales pueden aumentar la producción de grasa en el
+        cuero cabelludo y favorecer la aparición de caspa.
+    </p>
+
+    <h3>¿Cómo mantener un cabello saludable?</h3>
+    <ul>
+        <li>Lavar el cabello según sus necesidades y nivel de grasa.</li>
+        <li>Utilizar un champú adecuado para nuestro tipo de cabello.</li>
+        <li>Enjuagar bien para evitar residuos de productos.</li>
+        <li>Secar suavemente sin frotar demasiado.</li>
+        <li>Evitar el uso excesivo de calor y productos químicos.</li>
+        <li>Mantener limpios los peines y cepillos.</li>
+        <li>No compartir objetos personales para el cuidado del cabello.</li>
+        <li>Buscar orientación profesional si existe picazón o caída excesiva y persistente.</li>
+    </ul>
+
+    <h3>¿Por qué es importante?</h3>
+    <p>
+        Una buena higiene capilar ayuda a mantener limpio el cuero cabelludo,
+        reducir la acumulación de grasa y prevenir algunas molestias como
+        la irritación y la caspa.
+    </p>
+
+    <p><strong>Recuerda:</strong> El cuidado del cabello no depende de su
+    longitud o apariencia, sino de mantenerlo limpio y saludable.</p>
+</div>
+
+<button onclick="mostrar('cuidadoM')">Volver</button>
+</div>
+</div>
+
+<div id="Presentación personalM" class="pantalla">
+<div class="caja">
+<h1>HIGIENE BUCODENTAL "La carta de presentación"</h1>
+<div class="subcaja">
+<!-- IMAGEN ANTES DEL CONCEPTO -->
+        <div class="galeria">
+            <img src="imag/imagen35.jpg"
+                 alt="Ilustración sobre gestión emocional">
+        </div>
+ <p>
+        La presentación personal está relacionada con los hábitos de limpieza,
+        orden y cuidado que reflejamos en nuestra vida cotidiana. No significa
+        utilizar ropa costosa ni cumplir con un modelo de apariencia, sino
+        mantener una imagen limpia y adecuada para cada situación.
+    </p>
+
+    <h3>¿Cómo cuidar nuestra presentación personal?</h3>
+    <ul>
+        <li>Utilizar ropa limpia y en buen estado.</li>
+        <li>Mantener el cabello limpio y ordenado.</li>
+        <li>Cuidar la higiene corporal y bucal.</li>
+        <li>Mantener las uñas limpias.</li>
+        <li>Utilizar calzado limpio y apropiado.</li>
+        <li>Respetar las normas de presentación de nuestra institución educativa.</li>
+        <li>Mantener una postura y comportamiento respetuosos.</li>
+    </ul>
+
+    <h3>¿Por qué es importante?</h3>
+    <p>
+        Una presentación personal adecuada fortalece los hábitos de
+        responsabilidad, limpieza y respeto hacia nosotros mismos y
+        las personas que nos rodean.
+    </p>
+
+    <p><strong>Recuerda:</strong> La presentación personal comienza con
+    el cuidado de uno mismo, no con la comparación con otras personas.</p>
+</div>
+<button onclick="mostrar('cuidadoM')">Volver</button>
+</div>
+</div>
+
+<!-- SALUD FISICA -->
+<div id="fisicaM" class="pantalla">
+<div class="caja">
+<h1>Tu cuerpo es tu motor. Aliméntalo bien, mantenlo en movimiento y dale el descanso que merece para que nada te detenga.</h1>
+<div class="galeria">
+    <img src="imag/imagen21.jpg">
+    <img src="imag/imagen22.jpg">
+    <img src="imag/imagen25.jpg">
+</div>
+<div class="columna">
+<button onclick="mostrar('alimentacionM')">Alimentación</button>
+<button onclick="mostrar('ejercicioM')">Ejercicio</button>
+<button onclick="mostrar('descansoM')">Descanso</button>
+</div>
+
+<button onclick="mostrar('masculino')">Volver</button>
+</div>
+</div>
+
+<div id="alimentacionM" class="pantalla">
+<div class="caja">
+<h1>ALIMENTACIÓN "Combustible"</h1>
+<div class="subcaja">
+<!-- IMAGEN ANTES DEL CONCEPTO -->
+        <div class="galeria">
+            <img src="imag/imagen36.jpg"
+                 alt="Ilustración sobre gestión emocional">
+        </div>
+ <p>
+        La alimentación saludable es fundamental durante la adolescencia,
+        porque en esta etapa el cuerpo continúa creciendo y desarrollándose.
+        Los alimentos proporcionan la energía y los nutrientes necesarios
+        para fortalecer los músculos, los huesos, el cerebro y el sistema
+        inmunológico. Una buena alimentación también favorece la concentración,
+        el aprendizaje y el bienestar general.
+    </p>
+
+    <h3>¿Qué nutrientes necesita nuestro organismo?</h3>
+
+    <ul>
+        <li><strong>Proteínas:</strong> ayudan al crecimiento y a la reparación
+        de los tejidos. Se encuentran en huevos, carnes, pescado, leche,
+        yogur y legumbres.</li>
+
+        <li><strong>Carbohidratos:</strong> son una fuente importante de energía
+        para realizar las actividades diarias. Están presentes en arroz,
+        papa, avena, pan, quinua y otros cereales.</li>
+
+        <li><strong>Grasas saludables:</strong> contribuyen al funcionamiento
+        del cerebro y ayudan a absorber determinadas vitaminas. Se encuentran
+        en palta, frutos secos, semillas y aceites vegetales.</li>
+
+        <li><strong>Vitaminas y minerales:</strong> participan en diferentes
+        funciones del organismo y ayudan a mantener las defensas.</li>
+
+        <li><strong>Calcio:</strong> es importante para el desarrollo y
+        mantenimiento de huesos y dientes. Se encuentra en leche, queso
+        y yogur.</li>
+
+        <li><strong>Hierro:</strong> contribuye al transporte de oxígeno
+        en la sangre. Está presente en carnes, lentejas, porotos y verduras
+        de hoja verde.</li>
+    </ul>
+
+    <h3>¿Cómo mantener una alimentación equilibrada?</h3>
+
+    <ul>
+        <li>Consumir frutas y verduras variadas diariamente.</li>
+        <li>Incluir alimentos de diferentes grupos en las comidas.</li>
+        <li>Consumir legumbres, cereales y alimentos ricos en proteínas.</li>
+        <li>Beber suficiente agua durante el día.</li>
+        <li>Evitar el consumo frecuente de bebidas azucaradas.</li>
+        <li>Mantener horarios regulares de alimentación.</li>
+        <li>No saltarse habitualmente las comidas principales.</li>
+        <li>Preferir alimentos frescos y preparaciones variadas.</li>
+    </ul>
+
+    <h3>Importancia de la alimentación en la adolescencia</h3>
+
+    <p>
+        Una alimentación adecuada favorece el crecimiento, fortalece los
+        huesos y músculos, contribuye al funcionamiento del cerebro y
+        proporciona energía para estudiar, practicar deportes y realizar
+        las actividades cotidianas. También ayuda a mantener un buen
+        funcionamiento del sistema inmunológico.
+    </p>
+
+    <h3>Consecuencias de una alimentación inadecuada</h3>
+
+    <p>
+        Cuando la alimentación no proporciona los nutrientes necesarios,
+        pueden presentarse cansancio, dificultades de concentración,
+        debilidad y problemas relacionados con el desarrollo. Por eso,
+        es importante mantener hábitos alimenticios variados y equilibrados.
+    </p>
+
+    <p><strong>Recuerda:</strong> Alimentarse saludablemente no significa
+    dejar de comer ni seguir dietas estrictas. Significa proporcionar
+    al cuerpo los nutrientes que necesita para crecer y mantenerse saludable.</p>
+</div>
+<button onclick="mostrar('fisicaM')">Volver</button>
+</div>
+</div>
+
+<div id="ejercicioM" class="pantalla">
+<div class="caja">
+<h1>EJERCICIO “Movimiento”</h1>
+<div class="subcaja"></div>
+<!-- IMAGEN ANTES DEL CONCEPTO -->
+        <div class="galeria">
+            <img src="imag/imagen37.jpg"
+                 alt="Ilustración sobre gestión emocional">
+        </div>
+ <p>
+        La actividad física comprende todos los movimientos del cuerpo
+        que requieren gasto de energía. Incluye caminar, correr, bailar,
+        andar en bicicleta, practicar deportes y realizar juegos recreativos.
+        Durante la adolescencia, mantenerse activo contribuye al desarrollo
+        de los músculos, los huesos, el corazón y los pulmones.
+    </p>
+
+    <h3>¿Qué tipos de actividad física existen?</h3>
+
+    <ul>
+        <li><strong>Actividad aeróbica:</strong> aumenta el ritmo cardíaco
+        y respiratorio. Algunos ejemplos son caminar rápidamente, correr,
+        nadar, bailar y andar en bicicleta.</li>
+
+        <li><strong>Fortalecimiento muscular:</strong> ayuda a desarrollar
+        y mantener la fuerza de los músculos mediante actividades apropiadas
+        para la edad y capacidad de cada persona.</li>
+
+        <li><strong>Fortalecimiento de los huesos:</strong> incluye actividades
+        como saltar, correr y practicar algunos deportes, que estimulan
+        el desarrollo y mantenimiento de los huesos.</li>
+
+        <li><strong>Ejercicios de flexibilidad:</strong> permiten mejorar
+        la movilidad de las articulaciones y mantener una buena amplitud
+        de movimiento.</li>
+    </ul>
+
+    <h3>¿Cuánta actividad física se recomienda?</h3>
+
+    <p>
+        La Organización Mundial de la Salud recomienda que los niños,
+        niñas y adolescentes de 5 a 17 años realicen un promedio de
+        60 minutos diarios de actividad física de intensidad moderada
+        a vigorosa a lo largo de la semana. También recomienda incorporar
+        actividades que fortalezcan los músculos y los huesos al menos
+        tres días por semana.
+    </p>
+
+    <h3>Beneficios de realizar ejercicio</h3>
+
+    <ul>
+        <li>Fortalece el corazón y mejora la circulación sanguínea.</li>
+        <li>Contribuye al desarrollo de músculos y huesos.</li>
+        <li>Mejora la coordinación, el equilibrio y la resistencia.</li>
+        <li>Favorece la concentración y el rendimiento escolar.</li>
+        <li>Ayuda a reducir el estrés y mejorar el estado de ánimo.</li>
+        <li>Contribuye a mantener un sueño saludable.</li>
+        <li>Favorece el bienestar físico y emocional.</li>
+    </ul>
+
+    <h3>Recomendaciones para realizar actividad física</h3>
+
+    <ul>
+        <li>Elegir actividades que resulten agradables y divertidas.</li>
+        <li>Realizar un calentamiento antes de comenzar.</li>
+        <li>Utilizar ropa y calzado adecuados.</li>
+        <li>Beber agua antes, durante y después de la actividad.</li>
+        <li>Respetar los momentos de descanso y recuperación.</li>
+        <li>Adaptar la actividad a las capacidades de cada persona.</li>
+        <li>Evitar continuar si aparece dolor o malestar.</li>
+    </ul>
+
+    <h3>Importancia de mantenerse activo</h3>
+
+    <p>
+        La actividad física no solamente beneficia al cuerpo, también
+        favorece la salud mental y las relaciones sociales. Practicar
+        deportes o realizar actividades recreativas permite compartir
+        experiencias, desarrollar disciplina, fortalecer la confianza
+        y aprender a trabajar en equipo.
+    </p>
+
+    <p><strong>Recuerda:</strong> No es necesario practicar un deporte
+    profesional para mantenerse saludable. Caminar, bailar, jugar y
+    moverse diariamente también son formas de cuidar nuestro cuerpo.</p>
+</div>
+<button onclick="mostrar('fisicaM')">Volver</button>
+</div>
+</div>
+
+<div id="descansoM" class="pantalla">
+<div class="caja">
+<h1>DESCANSO “Recuperación”</h1>
+<div class="subcaja"></div>
+<!-- IMAGEN ANTES DEL CONCEPTO -->
+        <div class="galeria">
+            <img src="imag/imagen38.jpg"
+                 alt="Ilustración sobre gestión emocional">
+        </div>
+<p>
+        El descanso y el sueño son necesidades fundamentales para el
+        funcionamiento del organismo. Mientras dormimos, el cuerpo
+        realiza procesos de recuperación, crecimiento y regulación.
+        Además, el cerebro organiza la información aprendida durante
+        el día, lo que favorece la memoria y la concentración.
+    </p>
+
+    <h3>¿Cuántas horas debemos dormir?</h3>
+
+    <p>
+        Las necesidades de sueño cambian según la edad. Los adolescentes
+        de 13 a 17 años necesitan generalmente entre 8 y 10 horas de sueño
+        cada noche. A partir de los 18 años, la recomendación habitual
+        para los adultos es dormir entre 7 y 9 horas.
+    </p>
+
+    <h3>¿Por qué es importante dormir bien?</h3>
+
+    <ul>
+        <li>Favorece el crecimiento y la recuperación del organismo.</li>
+        <li>Ayuda a fortalecer el sistema inmunológico.</li>
+        <li>Mejora la memoria, la atención y el aprendizaje.</li>
+        <li>Contribuye a regular las emociones y el estado de ánimo.</li>
+        <li>Permite recuperar la energía utilizada durante el día.</li>
+        <li>Favorece el funcionamiento del cerebro y del sistema nervioso.</li>
+        <li>Ayuda a mantener un buen rendimiento en las actividades escolares.</li>
+    </ul>
+
+    <h3>Consecuencias de dormir poco</h3>
+
+    <p>
+        La falta de sueño puede provocar cansancio, irritabilidad,
+        dificultades para concentrarse, problemas de memoria y menor
+        rendimiento académico. Cuando se convierte en un hábito,
+        también puede afectar el bienestar físico y emocional.
+    </p>
+
+    <h3>Hábitos para mejorar la calidad del sueño</h3>
+
+    <ul>
+        <li>Acostarse y levantarse aproximadamente a la misma hora.</li>
+        <li>Evitar utilizar celulares, computadoras y otros dispositivos
+        justo antes de dormir.</li>
+        <li>Mantener la habitación tranquila, oscura y cómoda.</li>
+        <li>Evitar consumir bebidas con cafeína durante las últimas horas del día.</li>
+        <li>Realizar actividades relajantes antes de acostarse.</li>
+        <li>Evitar realizar actividades muy estimulantes inmediatamente antes de dormir.</li>
+        <li>Organizar las tareas escolares para no reducir las horas de descanso.</li>
+    </ul>
+
+    <h3>Importancia del descanso en la adolescencia</h3>
+
+    <p>
+        Durante la adolescencia se producen importantes cambios físicos,
+        mentales y emocionales. Por esta razón, dormir lo suficiente
+        permite que el organismo se recupere, que el cerebro procese
+        nuevos conocimientos y que podamos afrontar mejor las actividades
+        de cada día.
+    </p>
+
+    <p><strong>Recuerda:</strong> Dormir bien no es perder el tiempo.
+    Es una parte esencial del cuidado de nuestra salud.</p>
+</div>
+<button onclick="mostrar('fisicaM')">Volver</button>
+</div>
+</div>
+
+<div id="ejercicioM" class="pantalla">
+<div class="caja">
+<h1>HIGIENE "Íntima"</h1>
+<div class="subcaja"><strong><p>Es el hábito de limpieza específica de los órganos genitales para prevenir infecciones, irritaciones y malos olores. 
+    Es una parte fundamental del autoconocimiento y el respeto por el propio cuerpo. Después de sudar haciendo deporte, la humedad en la zona 
+    genital aumenta el riesgo de bacterias. Es el momento más importante para una ducha y cambio de ropa.
+</strong></p></div>
+<button onclick="mostrar('fisicaM')">Volver</button>
+</div>
+</div>
+
+
+<div id="femenino" class="pantalla">
+<div class="caja">
+<h1>ÁREA FEMENINA</h1>
+
+<div class="columna">
+<button onclick="mostrar('mentalF')">Salud Mental</button>
+<button onclick="mostrar('cuidadoF')">Cuidado Personal</button>
+<button onclick="mostrar('fisicaF')">Salud Física</button>
+</div>
+
+<button onclick="mostrar('inicio')">Volver</button>
+</div>
+</div>
+
+
+<div id="mentalF" class="pantalla">
+<div class="caja">
+<h1>SALUD MENTAL</h1>
+<div class="galeria">
+    <img src="imag/imagen7.jpg">
+    <img src="imag/imagen8.jpg">
+    <img src="imag/imagen9.jpg">
+</div>
+
+<div class="columna">
+<button onclick="mostrar('emocionF')">Gestión emocional</button>
+<button onclick="mostrar('autoestimaF')">Autoestima</button>
+<button onclick="mostrar('redesF')">Redes sociales</button>
+<button onclick="mostrar('apoyoF')">Apoyo</button>
+</div>
+
+<button onclick="mostrar('femenino')">Volver</button>
+</div>
+</div>
+<div id="emocionF" class="pantalla">
+<div class="caja">
+<h1>GESTIÓN EMOCIONAL</h1>
+<div class="subcaja">
+    <!-- IMAGEN ANTES DEL CONCEPTO -->
+        <div class="galeria">
+            <img src="imag/imagen39.jpg"
+                 alt="Ilustración sobre gestión emocional">
+        </div>
+ <p>
+        La gestión emocional es la capacidad de reconocer, comprender
+        y expresar nuestras emociones de manera saludable. Durante la
+        adolescencia podemos experimentar diferentes sentimientos debido
+        a los cambios personales, familiares, sociales y escolares.
+        Sentir alegría, tristeza, miedo, enojo, preocupación o frustración
+        forma parte de la experiencia humana.
+    </p>
+
+    <h3>¿Por qué es importante reconocer nuestras emociones?</h3>
+
+    <p>
+        Identificar lo que sentimos nos permite comprender mejor nuestras
+        reacciones, comunicar nuestras necesidades y afrontar situaciones
+        difíciles. No existen emociones buenas o malas; lo importante es
+        aprender a expresarlas sin lastimarnos ni lastimar a otras personas.
+    </p>
+
+    <h3>¿Cómo podemos gestionar nuestras emociones?</h3>
+
+    <ul>
+        <li>Identificar qué emoción estamos sintiendo y qué pudo provocarla.</li>
+        <li>Expresar lo que sentimos mediante palabras, escritura o actividades creativas.</li>
+        <li>Tomarnos un momento para respirar y recuperar la calma.</li>
+        <li>Evitar responder impulsivamente cuando estamos muy molestos.</li>
+        <li>Realizar actividades que nos ayuden a relajarnos.</li>
+        <li>Hablar con alguien de confianza cuando una situación nos preocupe.</li>
+        <li>Recordar que no tenemos que resolver todos los problemas inmediatamente.</li>
+    </ul>
+
+    <h3>¿Qué puede dificultar la gestión emocional?</h3>
+
+    <p>
+        Las preocupaciones escolares, los conflictos familiares, la presión
+        de otras personas, los cambios propios de la adolescencia y la falta
+        de descanso pueden influir en nuestro estado emocional.
+        Por eso, es importante aprender a reconocer cuándo necesitamos
+        una pausa o el acompañamiento de alguien.
+    </p>
+
+    <h3>Beneficios de una buena gestión emocional</h3>
+
+    <ul>
+        <li>Favorece el bienestar psicológico.</li>
+        <li>Ayuda a comunicarnos de manera respetuosa.</li>
+        <li>Facilita la resolución de problemas.</li>
+        <li>Contribuye a construir relaciones saludables.</li>
+        <li>Permite afrontar los cambios y desafíos de la adolescencia.</li>
+    </ul>
+
+    <p>
+        <strong>Recuerda:</strong> Está bien no sentirse bien todos los días.
+        Reconocer tus emociones también es una forma de cuidarte.
+    </p>
+</div>
+</div>
+<button onclick="mostrar('mentalF')">Volver</button>
+</div>
+</div>
+
+<div id="autoestimaF" class="pantalla">
+<div class="caja">
+<h1>AUTOESTIMA</h1>
+<div class="subcaja">
+    <!-- IMAGEN ANTES DEL CONCEPTO -->
+        <div class="galeria">
+            <img src="imag/imagen40.jpg"
+                 alt="Ilustración sobre gestión emocional">
+        </div>
+ <p>
+        La autoestima es la valoración y el respeto que una persona
+        desarrolla hacia sí misma. Incluye reconocer nuestras cualidades,
+        aceptar que tenemos dificultades y comprender que nuestro valor
+        no depende de la opinión de otras personas ni de cumplir con
+        determinados modelos de apariencia.
+    </p>
+
+    <p>
+        Durante la adolescencia, la autoestima puede verse influida por
+        los cambios físicos y emocionales, las amistades, los comentarios
+        de otras personas, el entorno familiar y las experiencias escolares.
+        Cada persona desarrolla su confianza y su identidad a su propio ritmo.
+    </p>
+
+    <h3>¿Cómo podemos fortalecer nuestra autoestima?</h3>
+
+    <ul>
+        <li>Reconocer nuestras cualidades, capacidades y habilidades.</li>
+        <li>Aprender a aceptar nuestros errores sin desvalorizar nuestra persona.</li>
+        <li>Evitar compararnos constantemente con otras personas.</li>
+        <li>Valorar nuestros esfuerzos y pequeños logros.</li>
+        <li>Establecer metas personales que sean realistas.</li>
+        <li>Aprender a expresar nuestras opiniones y establecer límites.</li>
+        <li>Rodearnos de personas que nos traten con respeto.</li>
+        <li>Reconocer que todas las personas tenemos características y capacidades diferentes.</li>
+    </ul>
+
+    <h3>¿Qué puede afectar nuestra autoestima?</h3>
+
+    <p>
+        Las críticas constantes, las burlas, el rechazo, la discriminación,
+        las comparaciones y la presión por cumplir expectativas ajenas
+        pueden afectar la manera en que nos valoramos. Es importante
+        recordar que los comentarios negativos no determinan quiénes somos.
+    </p>
+
+    <h3>Importancia de una autoestima saludable</h3>
+
+    <p>
+        Una autoestima saludable favorece la seguridad personal, la
+        autonomía y la capacidad de tomar decisiones. También nos ayuda
+        a reconocer nuestros derechos, expresar lo que pensamos y
+        construir relaciones basadas en el respeto.
+    </p>
+
+    <p>
+        <strong>Recuerda:</strong> No necesitas ser perfecta para
+        reconocer tu valor. Mereces respeto, empezando por ti misma.
+    </p>
+</div>
+</div>
+<button onclick="mostrar('mentalF')">Volver</button>
+</div>
+</div>
+
+<div id="redesF" class="pantalla">
+<div class="caja">
+<h1>REDES SOCIALES</h1>
+<div class="subcaja">
+    <!-- IMAGEN ANTES DEL CONCEPTO -->
+        <div class="galeria">
+            <img src="imag/imagen50.jpg"
+                 alt="Ilustración sobre gestión emocional">
+        </div>
+ <p>
+        Las redes sociales son plataformas digitales que permiten
+        comunicarnos, compartir experiencias, aprender y conocer
+        diferentes contenidos. Durante la adolescencia forman parte
+        de la vida cotidiana, pero es importante aprender a utilizarlas
+        de manera consciente y equilibrada.
+    </p>
+
+    <h3>¿Cómo pueden influir en nuestras emociones?</h3>
+
+    <p>
+        Las redes sociales pueden tener efectos positivos y también
+        presentar algunas dificultades. Permiten mantener contacto con
+        amistades, encontrar información y expresar intereses.
+        Sin embargo, las comparaciones, los comentarios ofensivos,
+        la presión por recibir aprobación y algunos contenidos pueden
+        generar preocupación o afectar el estado de ánimo.
+    </p>
+
+    <h3>¿Cómo utilizarlas de manera saludable?</h3>
+
+    <ul>
+        <li>Recordar que muchas publicaciones muestran solamente momentos seleccionados de la vida.</li>
+        <li>Evitar comparar nuestra vida con las imágenes o experiencias que vemos en internet.</li>
+        <li>Seguir cuentas que compartan información positiva y confiable.</li>
+        <li>Organizar el tiempo que dedicamos a las plataformas digitales.</li>
+        <li>Proteger nuestra privacidad y pensar antes de compartir información personal.</li>
+        <li>No participar en burlas, insultos ni comentarios que dañen a otras personas.</li>
+        <li>Dejar de seguir contenidos que nos hagan sentir incómodas o constantemente presionadas.</li>
+        <li>Equilibrar el tiempo en internet con el descanso, los estudios y las actividades personales.</li>
+    </ul>
+
+    <h3>¿Qué es la comparación digital?</h3>
+
+    <p>
+        Es cuando comparamos nuestra apariencia, experiencias, logros
+        o forma de vivir con lo que otras personas publican en internet.
+        Debemos comprender que las publicaciones no muestran necesariamente
+        toda la realidad de una persona y que cada adolescente tiene
+        su propio proceso de crecimiento.
+    </p>
+
+    <h3>¿Qué hacer ante situaciones desagradables en internet?</h3>
+
+    <ul>
+        <li>No responder impulsivamente ante provocaciones.</li>
+        <li>Bloquear y reportar cuentas que realicen acoso.</li>
+        <li>Evitar compartir datos personales con desconocidos.</li>
+        <li>Hablar con una persona adulta de confianza si algo nos preocupa.</li>
+        <li>Buscar orientación cuando una experiencia digital afecte nuestro bienestar.</li>
+    </ul>
+
+    <p>
+        <strong>Recuerda:</strong> Tu valor no se mide por la cantidad
+        de seguidores, comentarios o reacciones que recibes.
+        Las redes sociales deben ser una herramienta, no una medida
+        de tu importancia como persona.
+    </p>
+</div>
+</div>
+<button onclick="mostrar('mentalF')">Volver</button>
+</div>
+</div>
+
+<div id="apoyoF" class="pantalla">
+<div class="caja">
+<h1>APOYO</h1>
+<div class="subcaja">
+    <!-- IMAGEN ANTES DEL CONCEPTO -->
+        <div class="galeria">
+            <img src="imag/imagen51.jpg"
+                 alt="Ilustración sobre gestión emocional">
+        </div>
+ <p>
+        El apoyo emocional consiste en recibir comprensión, respeto,
+        escucha y acompañamiento cuando atravesamos situaciones que
+        nos generan preocupación, tristeza, estrés o dificultad.
+        Todas las personas podemos necesitar apoyo en algún momento
+        de nuestra vida, y pedirlo no significa ser débil.
+    </p>
+
+    <h3>¿De quién podemos recibir apoyo?</h3>
+
+    <ul>
+        <li>De nuestros padres, madres o familiares de confianza.</li>
+        <li>De una amiga o un amigo que sepa escuchar y respetar.</li>
+        <li>De docentes u orientadores de nuestra institución educativa.</li>
+        <li>De profesionales de psicología o servicios de salud.</li>
+        <li>De otras personas adultas responsables que nos brinden seguridad.</li>
+    </ul>
+
+    <h3>¿Cuándo es importante buscar apoyo?</h3>
+
+    <p>
+        Podemos buscar acompañamiento cuando una preocupación se vuelve
+        difícil de manejar, cuando los problemas afectan nuestras
+        actividades diarias o cuando sentimos que no podemos afrontar
+        una situación por nuestra cuenta.
+    </p>
+
+    <h3>¿Cómo podemos pedir ayuda?</h3>
+
+    <ul>
+        <li>Elegir a una persona con quien nos sintamos seguras.</li>
+        <li>Explicar con nuestras propias palabras lo que estamos sintiendo.</li>
+        <li>Decir claramente si necesitamos ser escuchadas o recibir orientación.</li>
+        <li>No sentir vergüenza por expresar nuestras preocupaciones.</li>
+        <li>Acudir a un profesional si el malestar continúa o afecta nuestra vida cotidiana.</li>
+    </ul>
+
+    <h3>¿Cómo podemos apoyar a una amiga?</h3>
+
+    <ul>
+        <li>Escuchar con atención y sin interrumpir.</li>
+        <li>Evitar juzgar, burlarse o minimizar sus sentimientos.</li>
+        <li>Respetar su confianza y tratarla con empatía.</li>
+        <li>Recordarle que no tiene que enfrentar sola sus dificultades.</li>
+        <li>Acompañarla a buscar ayuda de una persona adulta de confianza cuando sea necesario.</li>
+    </ul>
+
+    <h3>Importancia del apoyo emocional</h3>
+
+    <p>
+        Contar con personas que nos escuchen y acompañen favorece
+        el bienestar emocional, fortalece los vínculos de confianza
+        y ayuda a afrontar las dificultades. Un entorno familiar,
+        escolar y social respetuoso puede convertirse en una fuente
+        importante de protección durante la adolescencia.
+    </p>
+
+    <p>
+        <strong>Recuerda:</strong> Pedir ayuda es una decisión valiente.
+        No tienes que enfrentar todas las dificultades por tu cuenta.
+    </p>
+</div>
+<button onclick="mostrar('mentalF')">Volver</button>
+</div>
+</div>
+
+<div id="cuidadoF" class="pantalla">
+<div class="caja">
+<h1 style="font-size: 24px;">Cuidado Personal: El apoyo no es debilidad, es la inteligencia de saber que somos más fuertes cuando nos acompañamos. 
+    Identifica quiénes son las personas que te escuchan sin juzgarte y te hacen sentir segura.</h1>
+    <div class="galeria">
+    <img src="imag/imagen10.jpg">
+    <img src="imag/imagen11.jpg">
+    <img src="imag/imagen12.jpg">
+</div>
+
+<div class="columna">
+<button onclick="mostrar('pielF')">Piel</button>
+<button onclick="mostrar('higieneF')">Higiene íntima</button>
+<button onclick="mostrar('menstrualF')">Salud menstrual</button>
+<button onclick="mostrar('autoF')">Autocuidado</button>
+</div>
+
+<button onclick="mostrar('femenino')">Volver</button>
+</div>
+</div>
+<div id="pielF" class="pantalla">
+<div class="caja">
+<h1>CUIDADO FACIAL “Skincare”</h1>
+<div class="subcaja">
+    <!-- IMAGEN ANTES DEL CONCEPTO -->
+        <div class="galeria">
+            <img src="imag/imagen52.jpg"
+                 alt="Ilustración sobre gestión emocional">
+        </div>
+<p>
+        Tu piel te acompaña todos los días y cumple una función esencial:
+        proteger tu cuerpo de factores externos como el sol, el polvo,
+        la contaminación y algunos microorganismos. Por eso, cuidarla
+        no significa buscar una piel perfecta, sino mantenerla limpia,
+        protegida y saludable.
+    </p>
+
+    <p>
+        Durante la adolescencia, los cambios hormonales pueden aumentar
+        la producción de grasa en la piel. Esto puede provocar brillo,
+        puntos negros, granitos o acné. Son cambios frecuentes en esta
+        etapa y no significan que estés haciendo algo mal ni que tu
+        piel esté sucia.
+    </p>
+
+    <h3>Una rutina sencilla también es importante</h3>
+
+    <p>
+        No necesitas utilizar muchos productos para cuidar tu rostro.
+        Una limpieza suave por la mañana y por la noche ayuda a retirar
+        el sudor, la grasa y las impurezas acumuladas durante el día.
+        Después puedes utilizar una crema hidratante adecuada para tu
+        tipo de piel y, durante el día, protector solar.
+    </p>
+
+    <p>
+        El protector solar es especialmente importante porque ayuda
+        a proteger la piel de los daños ocasionados por la radiación
+        ultravioleta. Es recomendable utilizarlo incluso cuando el
+        cielo está nublado y renovarlo según las indicaciones del producto,
+        especialmente después de sudar o permanecer al aire libre.
+    </p>
+
+    <h3>Escucha las necesidades de tu piel</h3>
+
+    <p>
+        Cada piel es diferente. Algunas son secas, otras grasas y otras
+        presentan características mixtas o sensibilidad. Por eso,
+        es importante elegir productos suaves, evitar mezclar demasiados
+        tratamientos y no apretar los granitos, ya que esto puede
+        provocar irritación y dejar marcas.
+    </p>
+
+    <p>
+        Si tienes acné intenso, irritación persistente o molestias,
+        consultar con un profesional de salud puede ayudarte a encontrar
+        el cuidado adecuado.
+    </p>
+
+    <p>
+        <strong>Un consejo para ti:</strong> Tu piel no necesita ser
+        perfecta para estar saludable. Trátala con paciencia, protégela
+        del sol y recuerda que cuidarte es una forma de respetarte.
+    </p>
+</div>
+</div>
+<button onclick="mostrar('cuidadoF')">Volver</button>
+</div>
+</div>
+
+<div id="higieneF" class="pantalla">
+<div class="caja">
+<h1>HIGIENE ÍNTIMA “Cuidado de tu zona V”</h1>
+<div class="subcaja">
+    <!-- IMAGEN ANTES DEL CONCEPTO -->
+        <div class="galeria">
+            <img src="imag/imagen53.jpg"
+                 alt="Ilustración sobre gestión emocional">
+        </div>
+<p>
+        Conocer y cuidar nuestra zona íntima es una parte importante
+        de la salud femenina. Durante la adolescencia, el cuerpo
+        experimenta cambios naturales y aprender a mantener una higiene
+        adecuada permite sentirnos cómodas, prevenir irritaciones
+        y reconocer cuándo algo necesita atención.
+    </p>
+
+    <p>
+        Es importante conocer la diferencia entre la vulva y la vagina.
+        La vulva es la parte externa de los genitales femeninos, mientras
+        que la vagina es el conducto interno que comunica el útero
+        con el exterior. Esta diferencia nos ayuda a comprender que
+        no todas las partes necesitan los mismos cuidados.
+    </p>
+
+    <h3>Pequeños hábitos que hacen la diferencia</h3>
+
+    <p>
+        Para mantener una higiene adecuada, basta con lavar suavemente
+        la parte externa con agua limpia. Si utilizas jabón, procura
+        que sea suave y sin perfume. Después, seca la zona con cuidado,
+        sin frotar. También es recomendable utilizar ropa interior
+        limpia, cambiarla diariamente y elegir prendas cómodas.
+    </p>
+
+    <p>
+        Al utilizar el baño, limpiarse de adelante hacia atrás ayuda
+        a evitar que microorganismos de la zona anal lleguen a la
+        entrada vaginal o a las vías urinarias. Asimismo, lavarse
+        las manos antes y después de manipular productos de higiene
+        personal es un hábito sencillo y necesario.
+    </p>
+
+    <h3>Conoce los cambios naturales de tu cuerpo</h3>
+
+    <p>
+        El flujo vaginal es una secreción natural que ayuda a mantener
+        la vagina limpia y protegida. Generalmente puede ser transparente
+        o blanquecino, y su cantidad y consistencia pueden cambiar
+        durante el ciclo menstrual. Su presencia, por sí sola,
+        no significa que exista una infección.
+    </p>
+
+    <p>
+        Sin embargo, si notas picazón persistente, ardor, dolor,
+        olor fuerte o cambios importantes en el flujo, es recomendable
+        acudir a un profesional de salud. No es aconsejable utilizar
+        perfumes íntimos, duchas vaginales ni productos irritantes,
+        porque pueden alterar el equilibrio natural de la zona.
+    </p>
+
+    <p>
+        <strong>Un consejo para ti:</strong> Tu cuerpo tiene mecanismos
+        naturales de protección. No necesitas ocultar ni avergonzarte
+        de sus cambios. Conocerlo y cuidarlo es parte de tu bienestar.
+    </p>
+</div>
+</div>
+<button onclick="mostrar('cuidadoF')">Volver</button>
+</div>
+</div>
+
+<div id="menstrualF" class="pantalla">
+<div class="caja">
+<h1>Salud menstrual</h1>
+<div class="subcaja">
+    <!-- IMAGEN ANTES DEL CONCEPTO -->
+        <div class="galeria">
+            <img src="imag/imagen54.jpg"
+                 alt="Ilustración sobre gestión emocional">
+        </div>
+<p>
+        La menstruación es un proceso natural que forma parte del
+        desarrollo del cuerpo femenino. Ocurre cuando el revestimiento
+        interno del útero se desprende y sale a través de la vagina
+        en forma de sangrado. Aunque todavía existen muchos mitos
+        y vergüenza alrededor de este tema, conocer la menstruación
+        permite vivirla con mayor tranquilidad y seguridad.
+    </p>
+
+    <p>
+        El ciclo menstrual está regulado por cambios hormonales.
+        Durante este proceso, el organismo se prepara para un posible
+        embarazo. Si este no ocurre, el revestimiento del útero se
+        desprende y comienza un nuevo periodo menstrual. Cada cuerpo
+        tiene su propio ritmo y los ciclos pueden variar, especialmente
+        durante los primeros años después de la primera menstruación.
+    </p>
+
+    <h3>Aprende a conocer tu ciclo</h3>
+
+    <p>
+        Registrar las fechas de inicio de la menstruación puede ayudarte
+        a conocer mejor tu ciclo y reconocer tus cambios habituales.
+        Algunas adolescentes pueden experimentar cólicos, cansancio,
+        sensibilidad en los senos, hinchazón o variaciones en el estado
+        de ánimo. Estos síntomas no son iguales para todas las personas.
+    </p>
+
+    <h3>Cuidados durante los días de menstruación</h3>
+
+    <p>
+        Durante el periodo es importante mantener una higiene adecuada
+        y utilizar productos menstruales limpios, como toallas higiénicas,
+        tampones o copas menstruales, según las preferencias y necesidades
+        de cada persona. Estos productos deben utilizarse y cambiarse
+        siguiendo las indicaciones correspondientes.
+    </p>
+
+    <p>
+        También es recomendable lavarse las manos antes y después de
+        cambiar los productos, limpiar suavemente la zona externa
+        y desechar las toallas utilizadas en un basurero. No es necesario
+        dejar de estudiar, caminar o realizar actividades cotidianas
+        por estar menstruando, siempre que te sientas cómoda.
+    </p>
+
+    <h3>Escucha las señales de tu cuerpo</h3>
+
+    <p>
+        Para aliviar los cólicos puede ayudar aplicar calor suave
+        en la parte baja del abdomen, descansar y realizar movimientos
+        ligeros si te resultan cómodos. Sin embargo, si el dolor es
+        muy intenso, el sangrado es excesivo o aparecen mareos y debilidad,
+        es importante buscar orientación médica.
+    </p>
+
+    <p>
+        <strong>Un consejo para ti:</strong> La menstruación no es algo
+        de lo que debas avergonzarte. Es parte de la salud y merece
+        información, comprensión y respeto. Conocer tu ciclo también
+        es aprender a escuchar tu cuerpo.
+    </p>
+</div>
+</div>
+<button onclick="mostrar('cuidadoF')">Volver</button>
+</div>
+</div>
+
+<div id="autoF" class="pantalla">
+<div class="caja">
+<h1>AUTOCUIDADO</h1>
+<div class="subcaja">
+    <!-- IMAGEN ANTES DEL CONCEPTO -->
+        <div class="galeria">
+            <img src="imag/imagen55.jpg"
+                 alt="Ilustración sobre gestión emocional">
+        </div>
+<p>
+        El autocuidado es mucho más que mantener una buena apariencia
+        o cumplir con una rutina de higiene. Es aprender a reconocer
+        nuestras necesidades y realizar pequeñas acciones que favorezcan
+        nuestra salud física, mental y emocional.
+    </p>
+
+    <p>
+        Durante la adolescencia, las responsabilidades escolares,
+        las amistades, los cambios personales y las preocupaciones
+        pueden hacer que olvidemos dedicar tiempo a nuestro bienestar.
+        Por eso, es importante comprender que cuidarnos también significa
+        descansar, poner límites y permitirnos pedir ayuda.
+    </p>
+
+    <h3>Cuida tu cuerpo todos los días</h3>
+
+    <p>
+        Mantener una alimentación variada, beber suficiente agua,
+        realizar actividad física, descansar adecuadamente y cuidar
+        nuestra higiene son hábitos que contribuyen al funcionamiento
+        saludable del organismo. No se trata de hacerlo todo perfectamente,
+        sino de construir hábitos que podamos mantener.
+    </p>
+
+    <h3>También cuida tu bienestar emocional</h3>
+
+    <p>
+        Dedicar tiempo a las actividades que disfrutamos, expresar
+        nuestros sentimientos, conversar con personas de confianza
+        y reconocer cuándo necesitamos descansar son formas de
+        autocuidado emocional. No debemos sentirnos obligadas a
+        estar felices todo el tiempo ni a resolver todas las
+        dificultades por nuestra cuenta.
+    </p>
+
+    <h3>Aprende a respetar tus propios límites</h3>
+
+    <p>
+        Cuidarnos también significa reconocer aquello que nos hace
+        sentir incómodas, aprender a decir no y tomar decisiones
+        respetando nuestros valores. Nadie debe presionarnos para
+        realizar algo que no queremos. Nuestro cuerpo, nuestras
+        emociones y nuestras decisiones merecen respeto.
+    </p>
+
+    <h3>La importancia de pedir ayuda</h3>
+
+    <p>
+        Si una situación nos preocupa, nos causa malestar o afecta
+        nuestras actividades diarias, podemos hablar con una persona
+        adulta de confianza o buscar orientación profesional.
+        Pedir apoyo no es una señal de debilidad, sino una manera
+        responsable de proteger nuestro bienestar.
+    </p>
+
+    <p>
+        <strong>Un consejo para ti:</strong> No tienes que esperar
+        a sentirte mal para empezar a cuidarte. Dedicarte tiempo,
+        escucharte y respetarte también son formas de demostrarte
+        cariño.
+    </p>
+</div>
+</div>
+<button onclick="mostrar('cuidadoF')">Volver</button>
+</div>
+</div>
+<div id="fisicaF" class="pantalla">
+<div class="caja">
+<h1>SALUD FÍSICA</h1>
+<div class="galeria">
+    <img src="imag/imagen13.jpg">
+    <img src="imag/imagen14.jpg">
+    <img src="imag/imagen13.jpg">
+</div>
+
+<div class="columna">
+<button onclick="mostrar('ejercicioF')">Ejercicio</button>
+<button onclick="mostrar('alimentacionF')">Alimentación</button>
+<button onclick="mostrar('descansoF')">Descanso</button>
+</div>
+
+<button onclick="mostrar('femenino')">Volver</button>
+</div>
+</div>
+<div id="ejercicioF" class="pantalla">
+<div class="caja">
+<h1>EJERCICIO</h1>
+<div class="subcaja">
+    <!-- IMAGEN ANTES DEL CONCEPTO -->
+        <div class="galeria">
+            <img src="imag/imagen56.jpg"
+                 alt="Ilustración sobre gestión emocional">
+        </div>
+<p>
+        El ejercicio físico es una actividad que permite mantener el cuerpo
+        en movimiento y fortalecer diferentes partes del organismo. No se
+        trata solamente de practicar un deporte, también incluye caminar,
+        bailar, andar en bicicleta, correr, jugar o realizar actividades
+        recreativas.
+    </p>
+
+    <p>
+        Durante la adolescencia, mantenerse activo es especialmente
+        importante porque el cuerpo se encuentra en una etapa de crecimiento
+        y desarrollo. La actividad física ayuda a fortalecer los músculos y
+        los huesos, mejora la resistencia, favorece el funcionamiento del
+        corazón y contribuye al bienestar emocional.
+    </p>
+
+    <h3>¿Cuánta actividad física se recomienda?</h3>
+
+    <p>
+        Para niñas, niños y adolescentes de 5 a 17 años, se recomienda
+        realizar un promedio de 60 minutos diarios de actividad física
+        moderada o intensa a lo largo de la semana. No es necesario hacer
+        todo el ejercicio de una sola vez; se puede distribuir durante el día.
+    </p>
+
+    <h3>Actividades que puedes realizar</h3>
+
+    <ul>
+        <li>Caminar o andar en bicicleta.</li>
+        <li>Bailar y practicar deportes.</li>
+        <li>Jugar al aire libre.</li>
+        <li>Realizar ejercicios adecuados a tu edad y condición física.</li>
+    </ul>
+
+    <h3>Consejos para mantenerte activo</h3>
+
+    <p>
+        Elige actividades que disfrutes, comienza de manera progresiva,
+        utiliza ropa cómoda y recuerda mantenerte hidratado. También es
+        importante respetar los momentos de descanso y no exigirte más de
+        lo que tu cuerpo puede realizar.
+    </p>
+
+    <p>
+        <strong>Un consejo para ti:</strong> cada movimiento cuenta.
+        Encuentra una actividad que te guste y conviértela en parte de
+        tu vida cotidiana.
+    </p>
+</div>
+</div>
+<button onclick="mostrar('fisicaF')">Volver</button>
+</div>
+</div>
+
+<div id="alimentacionF" class="pantalla">
+<div class="caja">
+<h1>ALIMENTACIÓN</h1>
+<div class="subcaja">
+    <!-- IMAGEN ANTES DEL CONCEPTO -->
+        <div class="galeria">
+            <img src="imag/imagen57.jpg"
+                 alt="Ilustración sobre gestión emocional">
+        </div>
+<p>
+        La alimentación saludable consiste en proporcionar al organismo
+        los alimentos y nutrientes que necesita para obtener energía,
+        crecer, desarrollarse y realizar sus actividades diarias. Una buena
+        alimentación no significa dejar de comer determinados alimentos,
+        sino aprender a mantener variedad y equilibrio.
+    </p>
+
+    <p>
+        Durante la adolescencia, el cuerpo atraviesa diferentes cambios
+        y necesita energía y nutrientes para acompañar su crecimiento.
+        Por eso, es importante incluir frutas, verduras, cereales,
+        legumbres, lácteos y alimentos que aporten proteínas.
+    </p>
+
+    <h3>¿Qué son las calorías?</h3>
+
+    <p>
+        Las calorías son unidades que permiten medir la energía que
+        proporcionan los alimentos y las bebidas. El organismo utiliza
+        esa energía para respirar, caminar, estudiar, pensar, mantener
+        sus funciones internas y realizar actividad física.
+    </p>
+
+    <p>
+        Las calorías no son algo malo: el cuerpo las necesita para
+        funcionar correctamente. La cantidad de energía que necesita
+        cada persona es diferente y depende de factores como la edad,
+        el crecimiento, la actividad física y otras características
+        individuales.
+    </p>
+
+    <h3>¿Qué nutrientes necesita nuestro cuerpo?</h3>
+
+    <p>
+        <strong>Carbohidratos:</strong> son una fuente importante de
+        energía. Se encuentran en alimentos como la papa, el arroz,
+        la avena, el pan y otros cereales.
+    </p>
+
+    <p>
+        <strong>Proteínas:</strong> ayudan al crecimiento y mantenimiento
+        de los músculos y otros tejidos. Se encuentran en los huevos,
+        las carnes, el pescado, la leche y las legumbres.
+    </p>
+
+    <p>
+        <strong>Grasas saludables:</strong> proporcionan energía y
+        participan en funciones importantes del organismo. Están
+        presentes en alimentos como la palta, los frutos secos y
+        algunos aceites vegetales.
+    </p>
+
+    <p>
+        <strong>Vitaminas y minerales:</strong> ayudan al funcionamiento
+        del organismo y contribuyen al cuidado de los huesos, la sangre
+        y las defensas. Se encuentran en frutas, verduras y otros
+        alimentos variados.
+    </p>
+
+    <h3>Hábitos para una buena alimentación</h3>
+
+    <ul>
+        <li>Consumir frutas y verduras de diferentes colores.</li>
+        <li>Beber agua durante el día.</li>
+        <li>Incluir alimentos variados en las comidas.</li>
+        <li>Evitar depender diariamente de productos muy procesados.</li>
+        <li>Respetar las señales de hambre y saciedad del cuerpo.</li>
+    </ul>
+
+    <p>
+        <strong>Un consejo para ti:</strong> alimentarte bien es una
+        manera de cuidar tu cuerpo. Recuerda que cada organismo tiene
+        necesidades diferentes y que no debes comparar tu alimentación
+        con la de otras personas.
+    </p>
+</div>
+<button onclick="mostrar('fisicaF')">Volver</button>
+</div>
+</div>
+
+<div id="descansoF" class="pantalla">
+<div class="caja">
+<h1>DESCANSO</h1>
+<div class="subcaja">
+    <!-- IMAGEN ANTES DEL CONCEPTO -->
+        <div class="galeria">
+            <img src="imag/imagen58.jpg"
+                 alt="Ilustración sobre gestión emocional">
+        </div>
+ <p>
+        El descanso es una necesidad fundamental para el bienestar
+        físico y mental. Mientras dormimos, el organismo realiza
+        procesos importantes relacionados con la recuperación de
+        energía, el crecimiento, la memoria y el funcionamiento del
+        sistema nervioso.
+    </p>
+
+    <p>
+        Dormir bien permite comenzar el día con mayor disposición,
+        mantener la concentración en las clases y afrontar las
+        actividades cotidianas. Por el contrario, dormir poco puede
+        provocar cansancio, dificultad para prestar atención,
+        irritabilidad y falta de energía.
+    </p>
+
+    <h3>¿Cuántas horas debemos dormir?</h3>
+
+    <p>
+        Durante la adolescencia, se recomienda dormir entre 8 y 10
+        horas cada noche. Sin embargo, las necesidades pueden variar
+        de una persona a otra.
+    </p>
+
+    <h3>Hábitos para mejorar el descanso</h3>
+
+    <ul>
+        <li>Intentar acostarse y levantarse en horarios regulares.</li>
+        <li>Evitar utilizar el celular justo antes de dormir.</li>
+        <li>Mantener el dormitorio tranquilo y cómodo.</li>
+        <li>Evitar consumir bebidas con cafeína por la noche.</li>
+        <li>Realizar actividades relajantes antes de acostarse.</li>
+    </ul>
+
+    <h3>¿Por qué es importante descansar?</h3>
+
+    <p>
+        Un buen descanso favorece la memoria, el aprendizaje, la
+        concentración y la recuperación física. También ayuda a
+        regular las emociones y a mantener una mejor disposición
+        durante el día.
+    </p>
+
+    <p>
+        <strong>Un consejo para ti:</strong> descansar no es perder
+        el tiempo. Dormir lo suficiente es una forma de darle a tu
+        cuerpo y a tu mente el cuidado que necesitan.
+    </p>
+</div>
+<button onclick="mostrar('fisicaF')">Volver</button>
+</div>
+</div>
+<div id="general" class="pantalla">
+<div class="caja">
+
+<h1>ZONA GENERAL</h1>
+
+<div class="columna">
+
+<button onclick="mostrar('emocionalG')">
+Salud Emocional
+</button>
+
+<button onclick="mostrar('habitosG')">
+Hábitos Saludables
+</button>
+
+<button onclick="mostrar('itsG')">
+Salud Sexual e ITS
+</button>
+
+<button onclick="mostrar('chatbotPantalla')">
+Asistente Virtual 💬
+</button>
+
+</div>
+
+<button onclick="mostrar('inicio')">
+Volver
+</button>
+
+</div>
+</div>
+<div id="itsG" class="pantalla">
+    <div class="caja">
+
+        <h1>Las ITS</h1>
+<div class="subcaja">
+    <h2>¿Qué son las ITS?</h2>
+    <!-- IMAGEN ANTES DEL CONCEPTO -->
+        <div class="galeria">
+            <img src="imag/imagen65.jpg"
+                 alt="Ilustración sobre gestión emocional">
+        </div>
+
+    <p>
+        Las infecciones de transmisión sexual (ITS) son infecciones
+        causadas por virus, bacterias o parásitos que pueden
+        transmitirse principalmente mediante el contacto sexual.
+    </p>
+
+    <p>
+        Algunas pueden presentarse sin síntomas, por lo que una
+        persona podría tener una infección sin saberlo. Por eso,
+        es importante informarse, conocer las formas de prevención
+        y acudir a un centro de salud cuando sea necesario.
+    </p>
+
+    <p>
+        Conocer estas infecciones nos ayuda a tomar decisiones
+        responsables, cuidar nuestra salud y evitar prejuicios
+        hacia las personas que viven con alguna de ellas.
+    </p>
+</div>
+        <div class="columna">
+
+            <button onclick="mostrar('vph')">
+    VPH (Virus del Papiloma Humano)
+</button>
+
+<button onclick="mostrar('clamidiaGonorrea')">
+    Clamidia y Gonorrea
+</button>
+
+<button onclick="mostrar('sifilis')">
+    Sífilis
+</button>
+
+<button onclick="mostrar('herpes')">
+    Herpes Genital
+</button>
+
+<button onclick="mostrar('vih')">
+    VIH
+</button>
+        </div>
+
+        <button onclick="mostrar('general')">
+            Volver
+        </button>
+
+    </div>
+</div>
+<!-- VPH -->
+<div id="vph" class="pantalla">
+    <div class="caja">
+
+        <h1>VPH</h1>
+
+        <div class="subcaja">
+            <h2>Virus del Papiloma Humano</h2>
+            <!-- IMAGEN ANTES DEL CONCEPTO -->
+        <div class="galeria">
+            <img src="imag/imagen66.jpg"
+                 alt="Ilustración sobre gestión emocional">
+        </div>
+
+             <p>
+        El Virus del Papiloma Humano, conocido como VPH, es un grupo
+        de virus muy comunes que pueden afectar la piel y las mucosas.
+        Existen diferentes tipos: algunos pueden producir verrugas
+        y otros pueden ocasionar cambios celulares que, con el tiempo,
+        pueden convertirse en determinados tipos de cáncer.
+    </p>
+
+    <h3>¿Cómo se transmite?</h3>
+
+    <p>
+        Se transmite principalmente mediante el contacto íntimo
+        de piel con piel durante el contacto sexual. Una persona
+        puede transmitirlo incluso cuando no presenta señales
+        visibles de infección.
+    </p>
+
+    <h3>¿Cuáles son sus señales?</h3>
+
+    <p>
+        Muchas infecciones por VPH no producen síntomas y el
+        organismo puede eliminarlas por sí solo. Algunos tipos
+        pueden causar verrugas, mientras que otros pueden provocar
+        cambios celulares que necesitan seguimiento médico.
+    </p>
+
+    <h3>¿Cómo se puede prevenir?</h3>
+
+    <ul>
+        <li>Recibir la vacuna contra el VPH según las recomendaciones de salud.</li>
+        <li>Conocer las medidas de prevención de las ITS.</li>
+        <li>Realizar los controles médicos recomendados.</li>
+        <li>Consultar al personal de salud ante cualquier duda.</li>
+    </ul>
+
+    <p>
+        <strong>Un dato importante:</strong> la vacuna contra el VPH
+        ayuda a prevenir infecciones por los tipos del virus que
+        pueden causar varios cánceres y verrugas. No sustituye
+        los controles médicos recomendados.
+    </p>
+</div>
+        <button onclick="mostrar('itsG')">
+            Volver
+        </button>
+
+    </div>
+</div>
+<!-- CLAMIDIA Y GONORREA -->
+<div id="clamidiaGonorrea" class="pantalla">
+    <div class="caja">
+
+        <h1>Clamidia y Gonorrea</h1>
+
+        <div class="subcaja">
+            <h2>¿Qué son?</h2>
+            <!-- IMAGEN ANTES DEL CONCEPTO -->
+        <div class="galeria">
+            <img src="imag/imagen67.jpg"
+                 alt="Ilustración sobre gestión emocional">
+        </div>
+
+            <p>
+        La clamidia y la gonorrea son infecciones de transmisión
+        sexual causadas por bacterias. Ambas pueden afectar a
+        mujeres y varones y, en muchos casos, no presentan síntomas
+        al principio. Por esta razón, una persona puede tenerlas
+        sin darse cuenta.
+    </p>
+
+    <h3>¿Cómo se transmiten?</h3>
+
+    <p>
+        Se transmiten principalmente mediante el contacto sexual.
+        También pueden pasar de una madre infectada a su bebé
+        durante el parto.
+    </p>
+
+    <h3>¿Qué señales pueden aparecer?</h3>
+
+    <p>
+        Cuando producen síntomas, pueden presentarse secreciones
+        diferentes de lo habitual, molestias al orinar o dolor
+        en la parte baja del abdomen. Sin embargo, estas señales
+        no siempre aparecen y no permiten confirmar por sí solas
+        una infección.
+    </p>
+
+    <h3>¿Tienen tratamiento?</h3>
+
+    <p>
+        Sí. La clamidia y la gonorrea pueden tratarse con
+        antibióticos indicados por profesionales de salud.
+        Es importante completar el tratamiento prescrito
+        y seguir las recomendaciones médicas.
+    </p>
+
+    <p>
+        No se deben utilizar antibióticos por cuenta propia,
+        porque un tratamiento incorrecto puede dificultar
+        la curación y favorecer la resistencia bacteriana.
+    </p>
+
+    <p>
+        <strong>Un consejo para ti:</strong> no esperes a tener
+        síntomas para consultar si existe una preocupación.
+        La detección y el tratamiento oportunos ayudan a evitar
+        complicaciones.
+    </p>
+</div>
+
+        <button onclick="mostrar('itsG')">
+            Volver
+        </button>
+
+    </div>
+</div>
+<!-- SÍFILIS -->
+<div id="sifilis" class="pantalla">
+    <div class="caja">
+
+        <h1>Sífilis</h1>
+
+        <div class="subcaja">
+            <h2>¿Qué es?</h2>
+            <!-- IMAGEN ANTES DEL CONCEPTO -->
+        <div class="galeria">
+            <img src="imag/imagen68.jpg"
+                 alt="Ilustración sobre gestión emocional">
+        </div>
+
+            <p>
+        La sífilis es una infección de transmisión sexual causada
+        por una bacteria llamada Treponema pallidum. Puede afectar
+        diferentes partes del organismo y avanzar por etapas si
+        no recibe tratamiento.
+    </p>
+
+    <h3>¿Cómo se transmite?</h3>
+
+    <p>
+        Se transmite principalmente mediante el contacto directo
+        con lesiones infecciosas durante el contacto sexual.
+        También puede transmitirse de una madre infectada a su
+        bebé durante el embarazo.
+    </p>
+
+    <h3>¿Cuáles son sus señales?</h3>
+
+    <p>
+        En una etapa inicial puede aparecer una lesión que
+        generalmente no causa dolor. En otras etapas pueden
+        presentarse manchas en la piel, incluso en las palmas
+        de las manos o las plantas de los pies, y otros síntomas.
+        En ocasiones, las señales desaparecen, pero eso no
+        significa que la infección se haya curado.
+    </p>
+
+    <h3>¿Tiene tratamiento?</h3>
+
+    <p>
+        Sí. La sífilis puede curarse con antibióticos indicados
+        por un profesional de salud. La atención temprana es
+        importante para evitar complicaciones.
+    </p>
+
+    <p>
+        <strong>Un dato importante:</strong> aunque algunas
+        manifestaciones desaparezcan, la infección puede
+        continuar en el organismo. Por eso, es fundamental
+        realizarse las pruebas y recibir el tratamiento adecuado.
+    </p>
+</div>
+        <button onclick="mostrar('itsG')">
+            Volver
+        </button>
+
+    </div>
+</div>
+<!-- HERPES GENITAL -->
+<div id="herpes" class="pantalla">
+    <div class="caja">
+
+        <h1>Herpes Genital</h1>
+
+        <div class="subcaja">
+            <h2>¿Qué es?</h2>
+            <!-- IMAGEN ANTES DEL CONCEPTO -->
+        <div class="galeria">
+            <img src="imag/imagen69.jpg"
+                 alt="Ilustración sobre gestión emocional">
+        </div>
+
+             <p>
+        El herpes genital es una infección causada por el virus
+        del herpes simple. Puede permanecer en el organismo
+        durante mucho tiempo y presentar episodios en los que
+        aparecen molestias o lesiones en la zona genital.
+    </p>
+
+    <h3>¿Cómo se transmite?</h3>
+
+    <p>
+        Se transmite principalmente mediante el contacto directo
+        de piel o mucosas con una zona infectada. Puede transmitirse
+        incluso cuando no hay lesiones visibles.
+    </p>
+
+    <h3>¿Qué señales pueden aparecer?</h3>
+
+    <p>
+        Algunas personas no presentan síntomas. Otras pueden
+        experimentar pequeñas ampollas o úlceras dolorosas,
+        picazón, ardor o molestias. Estas señales pueden
+        reaparecer después de un tiempo.
+    </p>
+
+    <h3>¿Tiene tratamiento?</h3>
+
+    <p>
+        Actualmente no existe un tratamiento que elimine por
+        completo el virus del organismo. Sin embargo, existen
+        medicamentos antivirales que ayudan a controlar los
+        episodios, disminuir las molestias y reducir el riesgo
+        de transmisión.
+    </p>
+
+    <p>
+        <strong>Recuerda:</strong> el herpes genital es una
+        condición de salud, no una razón para discriminar
+        o juzgar a una persona. La orientación médica permite
+        recibir información y atención adecuada.
+    </p>
+</div>
+
+        <button onclick="mostrar('itsG')">
+            Volver
+        </button>
+
+    </div>
+</div>
+<!-- VIH -->
+<div id="vih" class="pantalla">
+    <div class="caja">
+
+        <h1>VIH</h1>
+
+        <div class="subcaja">
+            <h2>¿Qué es el VIH?</h2>
+            <!-- IMAGEN ANTES DEL CONCEPTO -->
+        <div class="galeria">
+            <img src="imag/imagen70.jpg"
+                 alt="Ilustración sobre gestión emocional">
+        </div>
+
+
+             <p>
+        El VIH es un virus que afecta al sistema inmunitario,
+        encargado de defender al organismo frente a diferentes
+        infecciones. Si no recibe tratamiento, puede debilitar
+        progresivamente las defensas del cuerpo.
+    </p>
+
+    <h3>¿Cómo se transmite?</h3>
+
+    <p>
+        El VIH puede transmitirse mediante determinados fluidos
+        corporales de una persona que tiene el virus, principalmente
+        durante el contacto sexual sin protección, por el contacto
+        con sangre infectada o de madre a hijo durante el embarazo,
+        el parto o la lactancia.
+    </p>
+
+    <h3>¿Cómo NO se transmite?</h3>
+
+    <p>
+        El VIH no se transmite por abrazar, saludar, compartir
+        alimentos, utilizar los mismos baños, conversar o convivir
+        con una persona que tiene el virus. Tampoco se transmite
+        por picaduras de mosquitos.
+    </p>
+
+    <h3>¿Cuáles son sus señales?</h3>
+
+    <p>
+        Algunas personas pueden presentar síntomas parecidos
+        a los de una gripe durante las primeras semanas, mientras
+        que otras no presentan señales. La única manera de
+        conocer el estado serológico es mediante una prueba
+        de detección.
+    </p>
+
+    <h3>¿Tiene tratamiento?</h3>
+
+    <p>
+        Sí. El tratamiento antirretroviral permite controlar
+        el VIH y reducir la cantidad de virus en el organismo.
+        Con atención médica continua, las personas con VIH
+        pueden llevar una vida larga y saludable.
+    </p>
+
+    <p>
+        Cuando el tratamiento consigue mantener la carga viral
+        indetectable, el VIH no se transmite por vía sexual.
+        Esto se conoce como Indetectable = Intransmisible (I=I).
+    </p>
+
+    <p>
+        <strong>Un mensaje importante:</strong> una persona con
+        VIH merece respeto, apoyo y las mismas oportunidades
+        que cualquier otra. La desinformación y la discriminación
+        pueden causar más daño que la propia falta de conocimiento.
+    </p>
+</div>
+<div class="subcaja">
+    <h2>La información también es prevención</h2>
+
+    <p>
+        Conocer las infecciones de transmisión sexual nos permite
+        comprender la importancia de la prevención, los controles
+        médicos y el cuidado de nuestra salud. No debemos sentir
+        vergüenza al realizar preguntas o buscar orientación.
+    </p>
+
+    <p>
+        Recuerda que ninguna infección define el valor de una
+        persona. La educación, el respeto y la atención oportuna
+        son fundamentales para construir una sociedad más
+        informada y libre de prejuicios.
+    </p>
+</div>
+
+        <button onclick="mostrar('itsG')">
+            Volver
+        </button>
+
+    </div>
+</div>
+<div id="emocionalG" class="pantalla">
+<div class="caja">
+<h1>SALUD EMOCIONAL</h1>
+<div class="galeria">
+    <img src="imag/imagen23.jpg">
+    <img src="imag/imagen24.jpg">
+    <img src="imag/imagen23.jpg">
+</div>
+
+<div class="columna">
+<button onclick="mostrar('controlG')">Control emocional</button>
+<button onclick="mostrar('comunicacionG')">Comunicación</button>
+<button onclick="mostrar('relacionesG')">Relaciones</button>
+</div>
+
+<button onclick="mostrar('general')">Volver</button>
+</div>
+</div>
+
+<div id="controlG" class="pantalla">
+<div class="caja">
+<h1>TU PAZ NO DEPENDE DE UN LIKE</h1>
+<div class="subcaja">
+    <!-- IMAGEN ANTES DEL CONCEPTO -->
+        <div class="galeria">
+            <img src="imag/imagen59.jpg"
+                 alt="Ilustración sobre gestión emocional">
+        </div>
+ <p>
+        Las emociones forman parte de nuestra vida y aparecen en diferentes
+        momentos: cuando estamos felices, preocupados, tristes, enojados
+        o sentimos miedo. Cada emoción tiene una razón de ser y nos ayuda
+        a comprender cómo nos sentimos frente a las situaciones que vivimos.
+    </p>
+
+    <p>
+        El control emocional consiste en reconocer, comprender y aprender
+        a manejar nuestras emociones de una manera saludable. No significa
+        ocultar lo que sentimos ni evitar estar tristes o enojados, sino
+        encontrar formas adecuadas de expresar esos sentimientos sin
+        lastimarnos ni lastimar a otras personas.
+    </p>
+
+    <h3>¿Por qué es importante?</h3>
+
+    <p>
+        Aprender a manejar las emociones nos ayuda a enfrentar los
+        problemas con mayor tranquilidad, tomar mejores decisiones,
+        resolver desacuerdos y comprender lo que sienten los demás.
+        También permite conocernos mejor y fortalecer nuestra confianza.
+    </p>
+
+    <h3>¿Cómo podemos manejar nuestras emociones?</h3>
+
+    <ul>
+        <li>Identificar qué emoción estamos sintiendo y qué la provocó.</li>
+        <li>Tomarnos un momento antes de responder cuando estamos molestos.</li>
+        <li>Expresar lo que sentimos utilizando palabras respetuosas.</li>
+        <li>Realizar actividades que nos ayuden a relajarnos.</li>
+        <li>Buscar apoyo cuando una situación nos resulta difícil.</li>
+    </ul>
+
+    <h3>Un ejemplo de la vida cotidiana</h3>
+
+    <p>
+        Imagina que recibes una calificación que no esperabas. Es normal
+        sentir frustración o tristeza. En lugar de reaccionar impulsivamente,
+        puedes reconocer lo que sientes, pensar qué puedes mejorar y pedir
+        orientación si la necesitas.
+    </p>
+
+    <p>
+        <strong>Un consejo para ti:</strong> no tienes que sentirte bien
+        todo el tiempo. Aprender a reconocer tus emociones también es
+        una forma de cuidar tu bienestar.
+    </p>
+
+</div>
+<button onclick="mostrar('emocionalG')">Volver</button>
+</div>
+</div>
+
+<div id="comunicacionG" class="pantalla">
+<div class="caja">
+<h1>TUS PALABRAS Y IMPORTAN</h1>
+<div class="subcaja">
+    <!-- IMAGEN ANTES DEL CONCEPTO -->
+        <div class="galeria">
+            <img src="imag/imagen60.jpg"
+                 alt="Ilustración sobre gestión emocional">
+        </div>
+  <p>
+        La comunicación es una parte fundamental de nuestras relaciones
+        con otras personas. Nos permite compartir ideas, expresar
+        sentimientos, transmitir necesidades y comprender diferentes
+        puntos de vista.
+    </p>
+
+    <p>
+        Comunicarnos correctamente no significa solamente hablar, también
+        implica saber escuchar, prestar atención y respetar lo que los
+        demás desean expresar. Una buena comunicación ayuda a evitar
+        malentendidos y permite resolver los problemas mediante el diálogo.
+    </p>
+
+    <h3>¿Qué es la comunicación asertiva?</h3>
+
+    <p>
+        Es la capacidad de expresar lo que pensamos, sentimos o necesitamos
+        de manera clara, sincera y respetuosa, sin imponer nuestras ideas
+        ni permitir que otras personas pasen por encima de nuestros derechos.
+    </p>
+
+    <h3>Claves para comunicarnos mejor</h3>
+
+    <ul>
+        <li>Escuchar sin interrumpir ni burlarse de los demás.</li>
+        <li>Expresar nuestras opiniones con respeto.</li>
+        <li>Hablar con sinceridad y evitar las ofensas.</li>
+        <li>Aprender a decir lo que nos incomoda.</li>
+        <li>Respetar las opiniones, diferencias y sentimientos de otras personas.</li>
+    </ul>
+
+    <h3>La importancia de saber escuchar</h3>
+
+    <p>
+        Escuchar es tan importante como hablar. Cuando prestamos atención
+        a otra persona, demostramos interés y le hacemos sentir que su
+        opinión es importante. No siempre tenemos que estar de acuerdo,
+        pero sí podemos aprender a respetar diferentes maneras de pensar.
+    </p>
+
+    <p>
+        <strong>Un consejo para ti:</strong> expresa lo que piensas sin
+        miedo, pero recuerda que tus palabras también pueden influir en
+        cómo se sienten los demás.
+    </p>
+
+</div>
+<button onclick="mostrar('emocionalG')">Volver</button>
+</div>
+</div>
+
+<div id="relacionesG" class="pantalla">
+<div class="caja">
+<h1>NO ERES LO QUE PIENSAS</h1>
+<div class="subcaja">
+    <!-- IMAGEN ANTES DEL CONCEPTO -->
+        <div class="galeria">
+            <img src="imag/imagen61.jpg"
+                 alt="Ilustración sobre gestión emocional">
+        </div>
+<p>
+        A lo largo de nuestra vida establecemos relaciones con familiares,
+        compañeros, amistades y otras personas. Estos vínculos pueden
+        influir en nuestra manera de pensar, sentir y desenvolvernos
+        en la sociedad.
+    </p>
+
+    <p>
+        Una relación saludable es aquella en la que existe respeto,
+        confianza, comunicación y apoyo mutuo. Nos permite sentirnos
+        escuchados, valorados y libres de expresar nuestra personalidad
+        sin miedo a recibir humillaciones, amenazas o malos tratos.
+    </p>
+
+    <h3>Características de una relación saludable</h3>
+
+    <ul>
+        <li><strong>Respeto:</strong> aceptar las opiniones y decisiones de los demás.</li>
+        <li><strong>Confianza:</strong> construir vínculos basados en la sinceridad.</li>
+        <li><strong>Comunicación:</strong> hablar sobre lo que sentimos y necesitamos.</li>
+        <li><strong>Apoyo mutuo:</strong> acompañarse en momentos buenos y difíciles.</li>
+        <li><strong>Límites personales:</strong> reconocer que cada persona tiene derecho a decir sí o no.</li>
+    </ul>
+
+    <h3>¿Cómo reconocer una relación que no es saludable?</h3>
+
+    <p>
+        Es importante prestar atención cuando una persona intenta
+        controlarnos, nos humilla, nos amenaza, nos aleja de nuestros
+        seres queridos o nos presiona para hacer algo que no queremos.
+        Estas conductas no son muestras de cariño ni de respeto.
+    </p>
+
+    <p>
+        Si vivimos una situación que nos hace sentir incómodos,
+        tenemos derecho a establecer límites y buscar ayuda de una
+        persona adulta de confianza.
+    </p>
+
+    <h3>Construyendo vínculos positivos</h3>
+
+    <p>
+        Las relaciones saludables se construyen día a día mediante
+        pequeños actos: escuchar, respetar, cumplir nuestra palabra,
+        reconocer los errores y comprender que cada persona merece
+        ser tratada con dignidad.
+    </p>
+
+    <p>
+        <strong>Un consejo para ti:</strong> rodéate de personas con
+        quienes puedas ser tú mismo, expresar tus ideas y sentirte
+        respetado. Tú también puedes ofrecer ese mismo respeto a los demás.
+    </p>
+
+</div>
+</div>
+<button onclick="mostrar('emocionalG')">Volver</button>
+</div>
+</div>
+
+<div id="habitosG" class="pantalla">
+<div class="caja">
+<h1>HÁBITOS SALUDABLES</h1>
+<div class="galeria">
+    <img src="imag/imagen25.jpg">
+    <img src="imag/imagen26.jpg">
+    <img src="imag/imagen27.jpg">
+</div>
+
+<div class="columna">
+<button onclick="mostrar('alimentacionG')">Alimentación</button>
+<button onclick="mostrar('suenoG')">Leer</button>
+<button onclick="mostrar('rutinaG')">Música</button>
+</div>
+
+<button onclick="mostrar('general')">Volver</button>
+</div>
+</div>
+
+<div id="alimentacionG" class="pantalla">
+<div class="caja">
+<h1>Alimentación saludable</h1>
+<div class="subcaja">
+    <!-- IMAGEN ANTES DEL CONCEPTO -->
+        <div class="galeria">
+            <img src="imag/imagen62.jpg"
+                 alt="Ilustración sobre gestión emocional">
+        </div>
+ <p>
+        Alimentarnos bien es uno de los hábitos más importantes para
+        mantener nuestro bienestar. Los alimentos nos proporcionan la
+        energía y los nutrientes que necesitamos para estudiar,
+        realizar nuestras actividades y mantener el organismo en
+        funcionamiento.
+    </p>
+
+    <p>
+        Una alimentación saludable no consiste en comer siempre lo
+        mismo ni en prohibirse determinados alimentos. Se trata de
+        aprender a elegir diferentes opciones que aporten nutrientes
+        y permitan mantener una alimentación variada y equilibrada.
+    </p>
+
+    <h3>¿Cómo podemos mejorar nuestra alimentación?</h3>
+
+    <ul>
+        <li>Incluir frutas y verduras de diferentes colores.</li>
+        <li>Consumir alimentos como arroz, papa, avena y otros cereales.</li>
+        <li>Incorporar proteínas como huevos, pescado, carnes y legumbres.</li>
+        <li>Beber agua durante el día.</li>
+        <li>Procurar mantener horarios regulares para las comidas.</li>
+    </ul>
+
+    <h3>La importancia de desayunar</h3>
+
+    <p>
+        El desayuno puede ayudarnos a comenzar el día con energía y
+        aportar nutrientes importantes. Una buena opción puede incluir
+        leche o yogur, frutas, pan, avena o huevos, según los alimentos
+        disponibles y las necesidades de cada persona.
+    </p>
+
+    <p>
+        <strong>Un consejo para ti:</strong> cuidar tu alimentación
+        comienza con pequeños hábitos cotidianos. No necesitas
+        hacerlo todo perfecto, lo importante es aprender a cuidar
+        tu cuerpo con variedad y equilibrio.
+    </p>
+
+</div>
+<button onclick="mostrar('habitosG')">Volver</button>
+</div>
+</div>
+
+<div id="sueñoG" class="pantalla">
+<div class="caja">
+<h1>El hábito de la lectura</h1>
+<div class="subcaja">
+    <!-- IMAGEN ANTES DEL CONCEPTO -->
+        <div class="galeria">
+            <img src="imag/imagen63.jpg"
+                 alt="Ilustración sobre gestión emocional">
+        </div>
+ <p>
+        Leer es una actividad que nos permite descubrir nuevos mundos,
+        conocer diferentes historias y aprender sobre temas que
+        despiertan nuestra curiosidad. A través de la lectura podemos
+        viajar con la imaginación, comprender otras realidades y
+        ampliar nuestra manera de ver el mundo.
+    </p>
+
+    <p>
+        Además de entretenernos, leer contribuye al desarrollo del
+        vocabulario, la comprensión lectora, la concentración y la
+        capacidad de expresar nuestras ideas. También nos ayuda a
+        desarrollar el pensamiento crítico y a mejorar nuestro
+        aprendizaje dentro y fuera del colegio.
+    </p>
+
+    <h3>Beneficios de leer diariamente</h3>
+
+    <ul>
+        <li>Amplía nuestro vocabulario y conocimiento.</li>
+        <li>Mejora la comprensión y la expresión escrita.</li>
+        <li>Estimula la imaginación y la creatividad.</li>
+        <li>Favorece la concentración y la atención.</li>
+        <li>Nos permite conocer diferentes culturas e historias.</li>
+    </ul>
+
+    <h3>¿Cómo podemos crear el hábito de leer?</h3>
+
+    <p>
+        No es necesario comenzar leyendo libros muy extensos.
+        Puedes elegir cuentos, novelas, historietas, revistas
+        o temas que realmente te interesen. Dedicar unos minutos
+        al día a la lectura puede ser un buen comienzo.
+    </p>
+
+    <p>
+        También puedes buscar un lugar tranquilo, establecer un
+        horario y compartir con otras personas aquello que has leído.
+        Lo importante es encontrar lecturas que despierten tu interés
+        y hagan de este momento una experiencia agradable.
+    </p>
+
+    <p>
+        <strong>Un consejo para ti:</strong> cada página que lees
+        puede enseñarte algo nuevo. No leas solamente por obligación;
+        descubre temas que disfrutes y permite que tu curiosidad
+        te lleve a aprender.
+    </p>
+
+</div>
+<button onclick="mostrar('habitosG')">Volver</button>
+</div>
+</div>
+
+<div id="rutinaG" class="pantalla">
+<div class="caja">
+<h1>Escuchar música</h1>
+<div class="subcaja">
+    <!-- IMAGEN ANTES DEL CONCEPTO -->
+        <div class="galeria">
+            <img src="imag/imagen64.jpg"
+                 alt="Ilustración sobre gestión emocional">
+        </div>
+<p>
+        La música forma parte de nuestra vida cotidiana. Está presente
+        en diferentes momentos: cuando estudiamos, descansamos,
+        compartimos con amigos o simplemente queremos disfrutar
+        de una canción que nos gusta.
+    </p>
+
+    <p>
+        Escuchar música puede convertirse en una actividad recreativa
+        que nos ayude a expresar emociones, recordar experiencias y
+        disfrutar de momentos de tranquilidad. Algunas canciones
+        pueden transmitir alegría, otras acompañarnos en momentos
+        difíciles o ayudarnos a concentrarnos, dependiendo de cada
+        persona y de la actividad que esté realizando.
+    </p>
+
+    <h3>Beneficios de escuchar música</h3>
+
+    <ul>
+        <li>Puede favorecer la relajación y el bienestar emocional.</li>
+        <li>Permite expresar y reconocer diferentes emociones.</li>
+        <li>Estimula la creatividad y la imaginación.</li>
+        <li>Puede acompañar actividades recreativas y momentos de descanso.</li>
+        <li>Favorece la conexión con otras personas mediante gustos musicales compartidos.</li>
+    </ul>
+
+    <h3>Disfruta de la música de manera saludable</h3>
+
+    <p>
+        Es importante escuchar música a un volumen moderado,
+        especialmente cuando utilizamos audífonos. También conviene
+        tomar descansos y mantener la atención en nuestro entorno
+        cuando caminamos o realizamos actividades que requieren
+        concentración.
+    </p>
+
+    <p>
+        Puedes crear una lista de canciones para diferentes momentos:
+        música tranquila para descansar, canciones alegres para
+        disfrutar tu tiempo libre o melodías instrumentales para
+        acompañar algunas actividades de estudio.
+    </p>
+
+    <p>
+        <strong>Un consejo para ti:</strong> permite que la música
+        sea parte de tus momentos especiales. Elige canciones que
+        disfrutes y recuerda cuidar tu audición mientras las escuchas.
+    </p>
+
+</div>
+<button onclick="mostrar('habitosG')">Volver</button>
+</div>
+
+</div>
+<div id="chatbotPantalla" class="pantalla">
+    <div class="caja">
+
+        <h1>Asistente Virtual 💬</h1>
+
+        <div id="chatMensajes">
+            <div class="bot">
+                Hola, soy tu asistente. Pregúntame sobre salud y bienestar.
+            </div>
+        </div>
+
+        <input type="text" id="pregunta"
+        placeholder="Escribe tu pregunta...">
+
+        <button onclick="responder()">Enviar</button>
+
+        <button onclick="mostrar('general')">
+            Volver
+        </button>
+
+    </div>
+</body>
+</html>
